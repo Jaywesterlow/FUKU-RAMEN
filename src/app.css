@@ -1,0 +1,164 @@
+/* ── Tokens ── */
+:root {
+	--paper: #f8f7f4;
+	--ink: #161514;
+	--ink-2: #5f5b55;
+	--line: #e2dfd8;
+	/* Fuku's own accent, the colour they pass to their booking widget */
+	--sage: #9d9e97;
+	--sage-deep: #66685f;
+	--lacquer: #0f0e0d;
+	--paper-d: #edeae4;
+	--muted-d: #a19c93;
+	--line-d: rgb(255 255 255 / 0.12);
+
+	--font-display: 'Bodoni Moda', Didot, 'Bodoni 72', 'Times New Roman', serif;
+	--font-body: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	--font-jp: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', 'MS Mincho', serif;
+
+	--gutter: clamp(20px, 5vw, 72px);
+	--max: 1280px;
+	--section: clamp(88px, 13vw, 176px);
+	--ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+	color-scheme: light;
+}
+
+/* ── Base ── */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+html {
+	scroll-behavior: auto;
+}
+body {
+	margin: 0;
+	background: var(--paper);
+	color: var(--ink);
+	font: 300 1.05rem/1.6 var(--font-body);
+	-webkit-font-smoothing: antialiased;
+	overflow-x: clip;
+}
+img,
+video {
+	display: block;
+	max-width: 100%;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+}
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+dl,
+dd,
+figure {
+	margin: 0;
+}
+ol,
+ul {
+	padding: 0;
+	list-style: none;
+}
+:focus-visible {
+	outline: 2px solid var(--sage-deep);
+	outline-offset: 4px;
+}
+
+/* ── Layout ── */
+.wrap {
+	max-width: var(--max);
+	margin-inline: auto;
+	padding-inline: var(--gutter);
+}
+
+/* ── Type ── */
+.display {
+	font-family: var(--font-display);
+	font-weight: 400;
+	font-style: italic;
+	letter-spacing: -0.01em;
+	line-height: 1.06;
+	text-wrap: balance;
+}
+h1.display {
+	font-size: clamp(3.1rem, 9vw, 8.4rem);
+	line-height: 1.02;
+}
+h2.display {
+	font-size: clamp(2.3rem, 5.4vw, 4.8rem);
+}
+h3 {
+	font-family: var(--font-display);
+	font-weight: 500;
+	font-size: clamp(1.45rem, 2.3vw, 2rem);
+	line-height: 1.15;
+	letter-spacing: -0.005em;
+}
+.lede {
+	font-size: clamp(1.12rem, 1.6vw, 1.35rem);
+	line-height: 1.5;
+	max-width: 28em;
+}
+.small {
+	font-size: 0.9rem;
+	color: var(--ink-2);
+}
+.jp {
+	font-family: var(--font-jp);
+}
+.numeric {
+	font-variant-numeric: tabular-nums;
+}
+
+/* a line of a heading sits in its own mask; room below the baseline keeps descenders whole */
+.line {
+	display: block;
+	overflow: hidden;
+	padding-bottom: 0.22em;
+	margin-bottom: -0.22em;
+}
+.line > span {
+	display: inline-block;
+	will-change: transform;
+}
+
+/* ── Links ── */
+/* underline that runs in from the left and leaves to the right */
+.ul {
+	position: relative;
+}
+.ul::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -0.15em;
+	width: 100%;
+	height: 1px;
+	background: currentColor;
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: transform 0.45s var(--ease);
+}
+.ul:hover::after {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
