@@ -1,3 +1,4 @@
+import adapter from '@sveltejs/adapter-vercel';
 import { enhancedImages } from '@sveltejs/enhanced-img';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
@@ -11,8 +12,9 @@ export default defineConfig({
 				// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
-			}
-			// No adapter on purpose: the deploy step (vercel-deploy) adds the one it needs.
+			},
+			// The page is prerendered, so Vercel serves static files; no function runs per visit.
+			adapter: adapter()
 		})
 	],
 	// gsap ships ESM without "type": "module"; bundle it for SSR and prerendering

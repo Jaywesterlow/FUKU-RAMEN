@@ -16,7 +16,7 @@ npm run dev
 | `npm run lint`    | Prettier check + ESLint        |
 | `npm run format`  | Prettier write                 |
 
-No adapter is installed on purpose. The deploy step adds the one it needs.
+Deploys to Vercel with `@sveltejs/adapter-vercel`. The page is prerendered, so Vercel serves static files.
 
 ## Where things live
 
