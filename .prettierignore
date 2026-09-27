@@ -1,0 +1,13 @@
+# Package Managers
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lock
+bun.lockb
+
+# Not ours to format
+/static/
+/docs/
+src/app.d.ts
+src/app.html
+src/lib/assets/
