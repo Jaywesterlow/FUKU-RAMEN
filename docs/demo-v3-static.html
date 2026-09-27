@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fuku Ramen</title>
+<meta name="description" content="Ramen redefined. A seasonal tasting menu around house-made ramen, local ingredients and sake in Amsterdam Oost. Izakaya à la carte on Saturday.">
+<script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('reduced')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Hanken+Grotesk:wght@300;400;500&family=Noto+Serif+JP:wght@500&display=swap">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Restaurant","name":"Fuku Ramen","url":"https://www.fukuramenamsterdam.com/","telephone":"+31642608596","email":"hello@fukuramenamsterdam.com","servesCuisine":["Ramen","Japanese"],"priceRange":"€€€","address":{"@type":"PostalAddress","streetAddress":"Ingogostraat 14A","postalCode":"1092 HZ","addressLocality":"Amsterdam","addressCountry":"NL"},"acceptsReservations":"https://www.fukuramenamsterdam.com/","sameAs":["https://www.instagram.com/fuku_ramen_amsterdam"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Wednesday","Thursday","Friday"],"opens":"18:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"13:00","closes":"19:30"}]}
+</script>
+<style>
+/* ── Lenis (inline) ── */
+html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}.lenis.lenis-smooth iframe{pointer-events:none}
+
+/* ── Tokens ── */
+:root{
+  --paper:#F8F7F4; --ink:#161514; --ink-2:#5F5B55; --line:#E2DFD8;
+  --sage:#9D9E97; --sage-deep:#66685F;
+  --lacquer:#0F0E0D; --paper-d:#EDEAE4; --muted-d:#A19C93; --line-d:rgba(255,255,255,.12);
+  --font-display:'Bodoni Moda',Didot,'Bodoni 72','Times New Roman',serif;
+  --font-body:'Hanken Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --font-jp:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho','MS Mincho',serif;
+  --gutter:clamp(20px,5vw,72px); --max:1280px;
+  --ease:cubic-bezier(.16,1,.3,1); --ease-out:cubic-bezier(.19,1,.22,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0;background:var(--paper);color:var(--ink);font:300 1.05rem/1.6 var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p,ol,ul,dl,dd,figure{margin:0}
+ol,ul{padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--sage-deep);outline-offset:4px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+section{padding-block:clamp(88px,13vw,176px)}
+.sr{position:absolute;left:-9999px}
+
+/* ── Type ── */
+.display{font-family:var(--font-display);font-weight:400;font-style:italic;letter-spacing:-.01em;line-height:1.06;text-wrap:balance}
+h1.display{font-size:clamp(3.1rem,9vw,8.4rem);line-height:1.02}
+h2.display{font-size:clamp(2.3rem,5.4vw,4.8rem)}
+h3{font-family:var(--font-display);font-weight:500;font-size:clamp(1.45rem,2.3vw,2rem);line-height:1.15;letter-spacing:-.005em}
+.eyebrow{display:flex;align-items:center;gap:.8em;font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
+.eyebrow .jp{font-family:var(--font-jp);font-weight:500;letter-spacing:0;font-size:1.05rem;color:var(--sage-deep)}
+.lede{font-size:clamp(1.12rem,1.6vw,1.35rem);line-height:1.5;max-width:28em}
+.small{font-size:.9rem;color:var(--ink-2)}
+.jp{font-family:var(--font-jp)}
+.copyable{font-variant-numeric:tabular-nums}
+
+/* ── Reveals: GSAP + ScrollTrigger (library 11b, 12, Gifu fade). CSS only hides until GSAP has set the start state. ── */
+.line{display:block;overflow:hidden;padding-bottom:.22em;margin-bottom:-.22em}
+.line>span{display:inline-block;will-change:transform}
+.reveal-img{overflow:hidden;position:relative}
+.reveal-img>img,.reveal-img>video{width:100%;height:100%;object-fit:cover;will-change:transform}
+html.js:not(.reduced):not(.gsap-ready) [data-reveal],
+html.js:not(.reduced):not(.gsap-ready) [data-fade],
+html.js:not(.reduced):not(.gsap-ready) [data-reveal-img]{visibility:hidden}
+
+/* ── Button: fill rises with its own copy of the label, so the text is readable at every frame ── */
+.btn{position:relative;display:inline-grid;isolation:isolate;overflow:hidden;border-radius:999px;border:1px solid currentColor;font:500 .74rem/1 var(--font-body);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;background:transparent;color:inherit;will-change:transform;text-decoration:none}
+.btn>span{grid-area:1/1;display:inline-flex;align-items:center;justify-content:center;gap:.7em;padding:1em 1.7em;white-space:nowrap}
+/* one direction only: in from the bottom on hover, out through the top on leave */
+.btn .fill{background:var(--fill,var(--ink));color:var(--fill-text,var(--paper));clip-path:inset(0 0 100% 0);transition:clip-path .38s var(--ease);border-radius:999px}
+.btn:hover .fill,.btn:focus-visible .fill{clip-path:inset(0 0 0 0);animation:fill-in .38s var(--ease)}
+@keyframes fill-in{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+.btn svg{width:1em;height:1em;flex:none;transition:transform .35s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn-ink{background:var(--ink);color:var(--paper);border-color:var(--ink);--fill:var(--sage-deep);--fill-text:#fff}
+.btn-light{color:#fff;--fill:#fff;--fill-text:var(--ink)}
+.btn-dark{color:var(--paper-d);--fill:var(--paper-d);--fill-text:var(--ink)}
+.btn-sm>span{padding:.8em 1.3em}
+.link{position:relative;display:inline-flex;align-items:center;gap:.5em;font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding-bottom:.35em}
+.link::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(1);transform-origin:left;transition:transform .5s var(--ease)}
+.link:hover::after{transform:scaleX(0);transform-origin:right}
+.link svg{width:.9em;height:.9em;transition:transform .35s var(--ease)}
+.link:hover svg{transform:translateX(4px)}
+.ul{position:relative}
+.ul::after{content:"";position:absolute;left:0;bottom:-.15em;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+.ul:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* ── Nav ── */
+.nav{position:fixed;left:0;right:0;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:calc(16px + env(safe-area-inset-top,0px)) var(--gutter) 16px;color:#fff;transition:color .35s,background .35s,box-shadow .35s}
+.nav.is-scrolled{color:var(--ink);background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.nav.is-scrolled .btn-light{color:var(--ink);--fill:var(--ink);--fill-text:var(--paper)}
+.brand{display:inline-flex;align-items:center;gap:.7em;font-size:.74rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+.brand .jp{font-size:1.45rem;line-height:1}
+.nav-links{display:flex;gap:2.2rem;font-size:.74rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+.nav-links a{padding-block:.3em}
+.nav-right{display:flex;align-items:center;gap:1.2rem}
+.burger{display:none;background:none;border:0;color:inherit;font:500 .74rem/1 var(--font-body);letter-spacing:.16em;text-transform:uppercase;padding:.6em 0;cursor:pointer}
+.menu{position:fixed;inset:0;z-index:40;background:var(--paper);color:var(--ink);display:grid;place-content:center;text-align:center;gap:1.6rem;opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
+.menu.is-open{opacity:1;pointer-events:auto}
+.menu a{font-family:var(--font-display);font-style:italic;font-size:2.4rem;line-height:1.1}
+.menu .small{margin-top:1.5rem}
+@media (max-width:840px){.nav-links{display:none}.burger{display:inline-block}.nav .btn{display:none}}
+
+/* ── Hero: exactly one viewport ── */
+.hero{position:relative;height:100vh;height:100svh;min-height:560px;display:grid;grid-template-rows:1fr auto;color:#fff;background:var(--lacquer);overflow:hidden;padding-block:0}
+.hero-media{position:absolute;inset:0}
+.hero-media video,.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .9s linear}
+.hero-media video.is-hidden{opacity:0}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.32),rgba(0,0,0,.06) 40%,rgba(0,0,0,.66))}
+.hero-inner{position:relative;z-index:1;align-self:end;display:grid;gap:1.4rem;padding-bottom:clamp(28px,5vh,56px)}
+.hero .eyebrow{color:rgba(255,255,255,.78)}
+.hero .eyebrow .jp{color:rgba(255,255,255,.9)}
+.hero .lede{color:rgba(255,255,255,.9)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:1.2rem 2rem;align-items:center;margin-top:.4rem}
+.hero .link{color:#fff}
+/* info bar: address · today · phone (the one thing no competitor puts above the fold) */
+.hero-bar{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;padding-bottom:calc(22px + env(safe-area-inset-bottom,0px));font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.hero-bar ul{display:flex;flex-wrap:wrap;gap:.6em 1.6em}
+.hero-bar li{display:flex;align-items:center;gap:.6em}
+.hero-bar li+li::before{content:"";width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.6}
+.hero-bar .open{color:#fff}
+.scroll-cue{display:grid;justify-items:center;gap:6px;font-size:.62rem;letter-spacing:.24em;transition:opacity .4s;flex:none}
+.scroll-cue.is-hidden{opacity:0}
+.scroll-cue svg{width:14px;height:32px;animation:cue 1.9s var(--ease) infinite alternate}
+@keyframes cue{from{transform:translateY(0)}to{transform:translateY(8px)}}
+@media (max-width:700px){.hero-bar{flex-direction:column;align-items:flex-start;gap:.8rem}.scroll-cue{display:none}.hero-bar ul{flex-direction:column;gap:.5em}.hero-bar li+li::before{display:none}}
+/* load-in (CSS only) */
+html.js:not(.reduced) .hero [data-hero] .line>span{transform:translateY(110%);animation:rise 1.2s var(--ease) forwards}
+html.js:not(.reduced) .hero [data-hero] .line:nth-child(2)>span{animation-delay:.1s}
+html.js:not(.reduced) .hero .fade-in{opacity:0;transform:translateY(14px);animation:fade .9s var(--ease) forwards}
+html.js:not(.reduced) .hero .fade-in.d1{animation-delay:.2s}
+html.js:not(.reduced) .hero .fade-in.d2{animation-delay:.45s}
+html.js:not(.reduced) .hero .fade-in.d3{animation-delay:.6s}
+html.js:not(.reduced) .hero .fade-in.d4{animation-delay:.9s}
+html.js:not(.reduced) .hero-media{opacity:0;animation:fade 1.4s ease forwards}
+@keyframes rise{to{transform:translateY(0)}}
+@keyframes fade{to{opacity:1;transform:none}}
+
+/* ── Fortune ── */
+.intro-grid{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,5vw,72px);align-items:start}
+.vert{writing-mode:vertical-rl;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2);padding-top:.4rem;white-space:nowrap}
+.vert .jp{font-size:1.05rem;letter-spacing:.3em;margin-bottom:.6em;color:var(--sage-deep)}
+.intro-text{display:grid;gap:1.8rem;max-width:52rem}
+.intro-figure{margin-top:clamp(56px,9vw,120px);display:grid;gap:1rem}
+.intro-figure .reveal-img{aspect-ratio:16/9;max-height:78vh}
+.intro-figure figcaption{display:flex;justify-content:space-between;gap:1rem;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+@media (max-width:700px){.intro-grid{grid-template-columns:1fr}.vert{writing-mode:horizontal-tb;padding:0}.vert .jp{margin:0 .6em 0 0}.intro-figure .reveal-img{aspect-ratio:4/5}}
+
+/* ── Two ways: the whole card is the link ── */
+.ways{padding-top:0}
+.ways-head{display:grid;gap:1.2rem;margin-bottom:clamp(40px,6vw,72px)}
+.ways-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px)}
+.way{display:grid;gap:1.2rem;align-content:start;color:inherit}
+.way .reveal-img{aspect-ratio:4/5}
+.way .reveal-img.is-done>img{transition:transform 1.4s var(--ease)}
+.way:hover .reveal-img.is-done>img{transform:scale(1.03)}
+.way-meta{display:flex;justify-content:space-between;gap:1rem;border-top:1px solid var(--ink);padding-top:1rem;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+.way-title{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.way-title svg{width:1.1rem;height:1.1rem;flex:none;transition:transform .4s var(--ease)}
+.way:hover .way-title svg{transform:translateX(6px)}
+.way p{color:var(--ink-2)}
+.way .price{font-family:var(--font-body);font-weight:300;font-size:.95rem;color:var(--ink-2);white-space:nowrap}
+@media (max-width:700px){.ways-grid{grid-template-columns:1fr;gap:56px}}
+
+/* ── The evening: dark chapter, sticky image centred (19) ── */
+.evening{background:var(--lacquer);color:var(--paper-d)}
+.evening .eyebrow{color:var(--muted-d)}
+.evening .eyebrow .jp{color:var(--sage)}
+.ev-head{display:grid;gap:1.4rem;max-width:56rem;margin-bottom:clamp(40px,6vw,88px)}
+.ev-head .small{color:var(--muted-d)}
+.stack{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,7vw,120px);align-items:start}
+.stack-visual{position:sticky;top:0;height:100vh;height:100svh;display:grid;align-content:center;gap:.9rem}
+.stack-frame{position:relative;width:100%;aspect-ratio:4/5;max-height:74svh;overflow:hidden;background:#1a1917}
+.stack-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease}
+.stack-img.is-active{opacity:1}
+.stack-cap{display:flex;justify-content:space-between;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-d)}
+.courses{display:grid;padding-block:14vh 22vh}
+.course{display:grid;grid-template-columns:auto 1fr;gap:1rem 2rem;align-items:start;padding-block:clamp(32px,5vh,56px);border-top:1px solid var(--line-d);min-height:26vh;opacity:.35;transform:translateY(10px);transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1)}
+.course:last-child{border-bottom:1px solid var(--line-d)}
+.course.is-active{opacity:1;transform:none}
+.course .jp{font-size:clamp(2.2rem,4vw,3.4rem);line-height:1;color:var(--muted-d);transition:color .4s}
+.course.is-active .jp{color:var(--sage)}
+.course-body{display:grid;gap:.6rem;max-width:26em}
+.course-n{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-d)}
+/* the line under a course only reads when the course is the active one: text through the scroll */
+.course p{color:var(--paper-d);opacity:0;transform:translateY(6px);transition:opacity .5s ease .1s,transform .5s var(--ease) .1s}
+.course.is-active p{opacity:.85;transform:none}
+.ev-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.6rem 3rem;margin-top:clamp(40px,6vw,88px)}
+.ev-foot .price{font-family:var(--font-display);font-style:italic;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1}
+.ev-foot .price small{font:300 .92rem/1 var(--font-body);color:var(--muted-d);margin-left:.8rem;letter-spacing:.04em}
+@media (max-width:840px){.stack{grid-template-columns:1fr;gap:0}.stack-visual{top:calc(58px + env(safe-area-inset-top,0px));height:auto;z-index:1;background:var(--lacquer);padding-bottom:.6rem;align-content:start}.stack-frame{aspect-ratio:16/10;max-height:44svh}.stack-cap{display:none}.courses{padding-block:2vh 6vh}.course{min-height:0}.course p{opacity:.85;transform:none}}
+
+/* ── Saturday ── */
+.sat-grid{display:grid;grid-template-columns:5fr 6fr;gap:clamp(32px,7vw,120px);align-items:center}
+.sat-grid .reveal-img{aspect-ratio:3/4}
+.sat-text{display:grid;gap:1.6rem;max-width:32rem}
+.sat-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem 1.6rem;border-top:1px solid var(--line);padding-top:1.4rem;font-size:.92rem}
+.sat-facts dt{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.3rem}
+@media (max-width:840px){.sat-grid{grid-template-columns:1fr}.sat-grid .reveal-img{aspect-ratio:4/5;max-height:70vh}.sat-facts{grid-template-columns:1fr 1fr}}
+
+/* ── Strip (06) ── */
+.strip{padding-block:0 clamp(88px,13vw,176px);overflow:hidden}
+.scroller{width:100%}
+.scroller__inner{display:flex;flex-wrap:wrap;gap:12px;padding-inline:var(--gutter)}
+.scroller[data-animated="true"]{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#fff 8%,#fff 92%,transparent);mask:linear-gradient(90deg,transparent,#fff 8%,#fff 92%,transparent)}
+.scroller[data-animated="true"] .scroller__inner{width:max-content;flex-wrap:nowrap;padding-inline:0;animation:mq-scroll var(--_animation-duration,40s) var(--_animation-direction,forwards) linear infinite}
+.scroller[data-animated="true"]:hover .scroller__inner{animation-play-state:paused}
+.scroller[data-speed="slow"]{--_animation-duration:60s}
+@keyframes mq-scroll{to{transform:translate(calc(-50% - 6px))}}
+.scroller img{height:clamp(200px,32vw,340px);width:auto;aspect-ratio:4/5;object-fit:cover;flex:none}
+.scroller img.wide{aspect-ratio:3/2}
+
+/* ── Visit ── */
+.visit{padding-top:0;padding-bottom:0}
+.visit-band{position:relative;min-height:52vh;display:grid;align-items:end;color:#fff;background:var(--lacquer);overflow:hidden}
+.visit-band video,.visit-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+.visit-band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.55))}
+.visit-band .wrap{position:relative;z-index:1;width:100%;padding-block:12vh 7vh;display:grid;gap:1rem}
+.visit-band .eyebrow{color:rgba(255,255,255,.75)}
+.visit-band .eyebrow .jp{color:#fff}
+.visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,56px);padding-top:clamp(56px,8vw,96px)}
+.visit-col{display:grid;gap:.9rem;align-content:start;border-top:1px solid var(--ink);padding-top:1.2rem;font-size:.98rem}
+.visit-col h3{font-family:var(--font-body);font-weight:500;letter-spacing:.16em;text-transform:uppercase;font-size:.7rem;color:var(--ink-2)}
+.visit-col p{max-width:26em}
+.visit-col ul{display:grid;gap:.55rem}
+.visit-col li{padding-left:1.1em;position:relative}
+.visit-col li::before{content:"";position:absolute;left:0;top:.7em;width:5px;height:5px;border-radius:50%;background:var(--sage)}
+.hours{display:grid;gap:.8rem}
+.hours b{display:block;font-weight:500}
+.hours .today{color:var(--sage-deep);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;font-weight:500;margin-left:.5em}
+.reserve-row{display:grid;justify-items:center;text-align:center;gap:1.2rem;padding-block:clamp(64px,9vw,120px)}
+.reserve-row .btn{font-size:.82rem}
+.reserve-row .btn>span{padding:1.25em 2.2em}
+@media (max-width:840px){.visit-grid{grid-template-columns:1fr}}
+
+/* ── Footer: one row ── */
+.footer{border-top:1px solid var(--line);padding-block:clamp(40px,5vw,64px) calc(28px + env(safe-area-inset-bottom,0px))}
+.footer .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:1.5rem 3rem;align-items:center}
+.footer img{height:72px;width:auto;mix-blend-mode:multiply}
+.footer .tag{font-family:var(--font-display);font-style:italic;font-size:1.5rem;line-height:1.1;margin-bottom:.4rem}
+.footer address{font-style:normal;font-size:.88rem;color:var(--ink-2);line-height:1.6}
+.footer-links{display:grid;gap:.45rem;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;text-align:right;justify-items:end}
+.footer .credit{grid-column:1/-1;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:1rem}
+@media (max-width:700px){.footer .wrap{grid-template-columns:1fr}.footer-links{text-align:left;justify-items:start}}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .scroll-cue svg{animation:none}
+  .course p{opacity:.85;transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <a class="brand" href="#top"><span class="jp" aria-hidden="true">福</span><span>Fuku Ramen</span></a>
+  <div class="nav-links">
+    <a class="ul" href="#story">Fortune</a>
+    <a class="ul" href="#evening">The evening</a>
+    <a class="ul" href="#saturday">Saturday</a>
+    <a class="ul" href="#visit">Visit</a>
+  </div>
+  <div class="nav-right">
+    <a class="btn btn-light btn-sm" href="#visit"><span>Reserve</span><span class="fill" aria-hidden="true">Reserve</span></a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+</nav>
+<div class="menu" id="menu">
+  <a href="#story">Fortune</a>
+  <a href="#evening">The evening</a>
+  <a href="#saturday">Saturday</a>
+  <a href="#visit">Visit &amp; reserve</a>
+  <p class="small">Ingogostraat 14A · Amsterdam Oost</p>
+</div>
+
+<!-- ── Hero ── -->
+<header class="hero" id="top">
+  <div class="hero-media" id="hero-media" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="metadata" poster="assets/p02.jpg" data-loop data-seamless>
+      <source src="assets/hero-bowl.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow fade-in d1"><span class="jp" aria-hidden="true">福</span>Amsterdam Oost</p>
+    <h1 class="display" data-hero>
+      <span class="line"><span>Ramen</span></span>
+      <span class="line"><span>redefined.</span></span>
+    </h1>
+    <p class="lede fade-in d2">Six seasonal courses that end in a bowl.</p>
+    <div class="hero-cta fade-in d3">
+      <a class="btn btn-light" href="#visit"><span>Reserve a table <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="fill" aria-hidden="true">Reserve a table <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+      <a class="link" href="#evening">The evening <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    </div>
+  </div>
+  <div class="wrap hero-bar fade-in d4">
+    <ul>
+      <li><a class="ul" href="https://maps.google.com/?q=Ingogostraat+14A,+1092+HZ+Amsterdam" target="_blank" rel="noopener">Ingogostraat 14A</a></li>
+      <li class="open" id="today">Wednesday to Saturday</li>
+      <li><a class="ul copyable" href="tel:+31642608596">+31 6 42 60 85 96</a></li>
+    </ul>
+    <a class="scroll-cue" id="cue" href="#story" aria-label="Scroll down">
+      <span>Scroll</span>
+      <svg viewBox="0 0 14 32" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M7 0v28M1 22l6 6 6-6"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- ── Fortune ── -->
+<section class="intro" id="story">
+  <div class="wrap intro-grid">
+    <aside class="vert" aria-hidden="true"><span class="jp">福</span>fuku · fortune</aside>
+    <div class="intro-text">
+      <p class="eyebrow"><span class="jp" aria-hidden="true">福</span>Fortune</p>
+      <h2 class="display" data-reveal>
+        <span class="line"><span>Fuku means fortune.</span></span>
+        <span class="line"><span>Here it comes in a bowl.</span></span>
+      </h2>
+      <p class="lede" data-fade>House-made ramen, local ingredients, sake. A seasonal tasting menu through the week, the izakaya on Saturday.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <figure class="intro-figure">
+      <div class="reveal-img" data-reveal-img><img src="assets/p05.jpg" alt="The chef at the counter, preparing a course" loading="lazy"></div>
+      <figcaption><span>The counter</span><span>Ingogostraat 14A</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ── Two ways ── -->
+<section class="ways" id="ways">
+  <div class="wrap">
+    <header class="ways-head">
+      <p class="eyebrow"><span class="jp" aria-hidden="true">二</span>Two ways to eat here</p>
+      <h2 class="display" data-reveal><span class="line"><span>An evening, or a Saturday.</span></span></h2>
+    </header>
+    <div class="ways-grid">
+      <a class="way" href="#evening">
+        <div class="reveal-img" data-reveal-img><img src="assets/p08.jpg" alt="A course on a stone plate" loading="lazy"></div>
+        <div class="way-meta"><span>Wednesday to Friday</span><span class="copyable">18:00 – 23:00</span></div>
+        <div class="way-title"><h3>The evening</h3><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <p>Six courses, ramen as the main. <span class="price">€89 · reservations only</span></p>
+      </a>
+      <a class="way" href="#saturday">
+        <div class="reveal-img" data-reveal-img><img src="assets/p10.jpg" alt="Skewers over the charcoal grill" loading="lazy"></div>
+        <div class="way-meta"><span>Saturday</span><span class="copyable">13:00 – 19:30</span></div>
+        <div class="way-title"><h3>The izakaya</h3><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <p>À la carte, a weekly ramen special. <span class="price">Limited walk-ins</span></p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── The evening (signature) ── -->
+<section class="evening" id="evening">
+  <div class="wrap">
+    <header class="ev-head">
+      <p class="eyebrow"><span class="jp" aria-hidden="true">夜</span>The evening · Wednesday to Friday</p>
+      <h2 class="display" data-reveal>
+        <span class="line"><span>Six courses.</span></span>
+        <span class="line"><span>One bowl at the end.</span></span>
+      </h2>
+      <p class="small" data-fade>A sample structure. The menu follows the season.</p>
+    </header>
+
+    <div class="stack" id="stack">
+      <div class="stack-visual">
+        <div class="stack-frame" aria-hidden="true">
+          <img class="stack-img is-active" data-state="1" src="assets/p06.jpg" alt="" loading="lazy">
+          <img class="stack-img" data-state="2" src="assets/p08.jpg" alt="" loading="lazy">
+          <img class="stack-img" data-state="3" src="assets/p10.jpg" alt="" loading="lazy">
+          <img class="stack-img" data-state="4" src="assets/p11.jpg" alt="" loading="lazy">
+          <img class="stack-img" data-state="5" src="assets/p04.jpg" alt="" loading="lazy">
+          <img class="stack-img" data-state="6" src="assets/p12.jpg" alt="" loading="lazy">
+        </div>
+        <div class="stack-cap"><span id="stack-label">01 · To begin</span><span>Sample evening</span></div>
+      </div>
+
+      <ol class="courses">
+        <li class="course is-active" data-course="1" data-label="01 · To begin">
+          <span class="jp" aria-hidden="true">一</span>
+          <div class="course-body"><p class="course-n">Course 01</p><h3>To begin</h3><p>Small bites and a first pour.</p></div>
+        </li>
+        <li class="course" data-course="2" data-label="02 · Raw">
+          <span class="jp" aria-hidden="true">二</span>
+          <div class="course-body"><p class="course-n">Course 02</p><h3>Raw</h3><p>Fish and vegetables at their moment.</p></div>
+        </li>
+        <li class="course" data-course="3" data-label="03 · From the charcoal">
+          <span class="jp" aria-hidden="true">三</span>
+          <div class="course-body"><p class="course-n">Course 03</p><h3>From the charcoal</h3><p>Straight from the fire to the counter.</p></div>
+        </li>
+        <li class="course" data-course="4" data-label="04 · The season's plate">
+          <span class="jp" aria-hidden="true">四</span>
+          <div class="course-body"><p class="course-n">Course 04</p><h3>The season's plate</h3><p>Whatever is at its best this month.</p></div>
+        </li>
+        <li class="course" data-course="5" data-label="05 · The bowl">
+          <span class="jp" aria-hidden="true">五</span>
+          <div class="course-body"><p class="course-n">Course 05</p><h3>The bowl</h3><p>House-made ramen, as the main course.</p></div>
+        </li>
+        <li class="course" data-course="6" data-label="06 · To finish">
+          <span class="jp" aria-hidden="true">六</span>
+          <div class="course-body"><p class="course-n">Course 06</p><h3>To finish</h3><p>Something sweet, and a last sake.</p></div>
+        </li>
+      </ol>
+    </div>
+
+    <footer class="ev-foot">
+      <p class="price">€89 <small>per person · reservations only</small></p>
+      <a class="btn btn-dark" href="#visit"><span>Reserve the evening <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="fill" aria-hidden="true">Reserve the evening <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+    </footer>
+  </div>
+</section>
+
+<!-- ── Saturday ── -->
+<section class="saturday" id="saturday">
+  <div class="wrap sat-grid">
+    <div class="reveal-img" data-reveal-img>
+      <video muted loop playsinline preload="metadata" poster="assets/p04.jpg" data-loop aria-label="Noodles lifted from a bowl of ramen">
+        <source src="assets/bowl-portrait.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="sat-text">
+      <p class="eyebrow"><span class="jp" aria-hidden="true">土</span>Saturday · 13:00 – 19:30</p>
+      <h2 class="display" data-reveal><span class="line"><span>The izakaya.</span></span></h2>
+      <p class="lede" data-fade>À la carte from one in the afternoon. A ramen special that changes every week, plates to share, sake.</p>
+      <dl class="sat-facts" data-fade>
+        <div><dt>Reservations</dt><dd>Recommended. Limited walk-ins.</dd></div>
+        <div><dt>Company</dt><dd>Children and dogs welcome.</dd></div>
+        <div><dt>Veg &amp; vegan</dt><dd>Always available on Saturday.</dd></div>
+      </dl>
+      <div><a class="btn btn-ink" href="#visit"><span>Reserve a Saturday <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="fill" aria-hidden="true">Reserve a Saturday <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Strip (06) ── -->
+<section class="strip" aria-label="Photos of Fuku Ramen">
+  <div class="scroller" data-speed="slow">
+    <div class="scroller__inner">
+      <img class="wide" src="assets/p03.jpg" alt="The counter and bar, lit low" loading="lazy">
+      <img src="assets/p09.jpg" alt="A bottle of sake" loading="lazy">
+      <img class="wide" src="assets/p07.jpg" alt="A table by the wall with a single flower" loading="lazy">
+      <img src="assets/p12.jpg" alt="A cocktail with an orange peel" loading="lazy">
+      <img class="wide" src="assets/p04.jpg" alt="Noodles lifted from a bowl" loading="lazy">
+      <img src="assets/p02.jpg" alt="Shoyu ramen with egg and chashu" loading="lazy">
+      <img class="wide" src="assets/p11.jpg" alt="Grilled fish on a green sauce" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ── Visit & reserve ── -->
+<section class="visit" id="visit">
+  <div class="visit-band">
+    <video muted loop playsinline preload="metadata" poster="assets/p10.jpg" data-loop aria-hidden="true">
+      <source src="assets/noodles-boil.mp4" type="video/mp4">
+    </video>
+    <div class="wrap">
+      <p class="eyebrow"><span class="jp" aria-hidden="true">訪</span>Visit &amp; reserve</p>
+      <h2 class="display" data-reveal><span class="line"><span>Come and eat.</span></span></h2>
+    </div>
+  </div>
+
+  <div class="wrap visit-grid">
+    <div class="visit-col" data-fade>
+      <h3>Hours</h3>
+      <div class="hours">
+        <p><b>Wednesday to Friday<span class="today" data-days="3,4,5"></span></b><span class="copyable">18:00 – 23:00</span> · the evening, reservations only</p>
+        <p><b>Saturday<span class="today" data-days="6"></span></b><span class="copyable">13:00 – 19:30</span> · izakaya, walk-ins limited</p>
+        <p><b>Sunday to Tuesday</b>Closed</p>
+      </div>
+    </div>
+    <div class="visit-col" data-fade>
+      <h3>Find us</h3>
+      <p><a class="ul" href="https://maps.google.com/?q=Ingogostraat+14A,+1092+HZ+Amsterdam" target="_blank" rel="noopener">Ingogostraat 14A<br>1092 HZ Amsterdam</a></p>
+      <p><a class="ul copyable" href="mailto:hello@fukuramenamsterdam.com">hello@fukuramenamsterdam.com</a><br><a class="ul copyable" href="tel:+31642608596">+31 6 42 60 85 96</a><br><span class="small">Phone Wednesday to Saturday, 11:00 – 18:00</span></p>
+    </div>
+    <div class="visit-col" data-fade>
+      <h3>Good to know</h3>
+      <ul>
+        <li>Reservations open on the 1st of each month at 12:00, two months ahead.</li>
+        <li>A €10 deposit per person holds your table. Free changes up to 24 hours before.</li>
+        <li>Online for up to 5 guests. Larger groups by email.</li>
+        <li>The evening is for guests of 13 and up. Please skip the perfume.</li>
+        <li>Pescatarian and no-pork are possible. Vegetarian and vegan on Saturday.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap reserve-row">
+    <a class="btn btn-ink" id="magnet" href="https://www.fukuramenamsterdam.com/" target="_blank" rel="noopener"><span>Reserve a table <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="fill" aria-hidden="true">Reserve a table <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+    <p class="small">Fully booked? The waiting list in the booking system emails you when a table frees up.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <img src="assets/logo.png" alt="Fuku Ramen" loading="lazy">
+    <div>
+      <p class="tag">Ramen redefined.</p>
+      <address>Ingogostraat 14A · 1092 HZ Amsterdam · <a class="ul" href="mailto:hello@fukuramenamsterdam.com">hello@fukuramenamsterdam.com</a></address>
+    </div>
+    <div class="footer-links">
+      <a class="ul" href="https://www.instagram.com/fuku_ramen_amsterdam" target="_blank" rel="noopener">Instagram</a>
+      <a class="ul" href="#visit">Reserve</a>
+      <a class="ul" href="#top">Back to top</a>
+    </div>
+    <p class="credit"><span>福 · Fuku Ramen · KVK 86228811</span><span>Concept demo · jwcreative.nl</span></p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous"></script>
+<script>
+(function () {
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var HAS_GSAP = !!(window.gsap && window.ScrollTrigger);
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* ── basis: Lenis + ScrollTrigger, één keer per site (library) ── */
+  var lenis = null;
+  if (HAS_GSAP) {
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ ignoreMobileResize: true });
+    if (!REDUCED && window.Lenis) {
+      lenis = new Lenis({ autoRaf: false, anchors: true });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    }
+  }
+
+  /* ── vandaag open? (uren staan één keer hier én in de JSON-LD) ── */
+  var HOURS = { 3: ['18:00', '23:00'], 4: ['18:00', '23:00'], 5: ['18:00', '23:00'], 6: ['13:00', '19:30'] };
+  var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  (function today() {
+    var now = new Date(), d = now.getDay(), el = $('#today');
+    var mins = now.getHours() * 60 + now.getMinutes();
+    function toMin(t) { var p = t.split(':'); return +p[0] * 60 + +p[1]; }
+    if (HOURS[d] && mins < toMin(HOURS[d][1])) {
+      el.textContent = 'Today ' + HOURS[d][0] + ' – ' + HOURS[d][1];
+    } else {
+      var n = d, i = 0; do { n = (n + 1) % 7; i++; } while (!HOURS[n] && i < 7);
+      el.textContent = (HOURS[d] ? 'Closed for today' : 'Closed today') + ' · ' + DAYS[n] + ' from ' + HOURS[n][0];
+    }
+    $$('.today').forEach(function (t) { if (t.dataset.days.split(',').indexOf(String(d)) > -1) t.textContent = 'Today'; });
+  })();
+
+  /* ── nav state + scroll cue ── */
+  var nav = $('#nav'), cue = $('#cue'), hero = $('#top');
+  function onScroll() {
+    var y = window.scrollY || document.documentElement.scrollTop;
+    nav.classList.toggle('is-scrolled', y > hero.offsetHeight - 72);
+    cue.classList.toggle('is-hidden', y > 40);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ── mobile menu ── */
+  var burger = $('#burger'), menu = $('#menu');
+  function closeMenu() { menu.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false'); burger.textContent = 'Menu'; }
+  burger.addEventListener('click', function () {
+    var open = !menu.classList.contains('is-open');
+    menu.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.textContent = open ? 'Close' : 'Menu';
+  });
+  $$('a', menu).forEach(function (a) { a.addEventListener('click', closeMenu); });
+
+  /* ── video loops: spelen in beeld, pauze erbuiten; stil bij reduced motion ── */
+  var videos = $$('video[data-loop]');
+  function play(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  if (REDUCED) {
+    videos.forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.load(); });
+  } else {
+    /* hero: naadloze lus — een tweede kopie start 0,9 s voor het einde en fade over de eerste heen */
+    var seam = $('video[data-seamless]');
+    if (seam) {
+      var twin = seam.cloneNode(true);
+      twin.removeAttribute('autoplay'); twin.removeAttribute('data-seamless'); twin.classList.add('is-hidden');
+      seam.parentNode.appendChild(twin);
+      var FADE = 0.9, cur = seam, nxt = twin, swapping = false;
+      function watch(v) {
+        v.addEventListener('timeupdate', function () {
+          if (v !== cur || swapping || !v.duration) return;
+          if (v.currentTime > v.duration - FADE) {
+            swapping = true;
+            nxt.currentTime = 0; play(nxt); nxt.classList.remove('is-hidden');
+            setTimeout(function () { cur.pause(); cur.classList.add('is-hidden'); var t = cur; cur = nxt; nxt = t; swapping = false; }, FADE * 1000);
+          }
+        });
+      }
+      watch(seam); watch(twin);
+      videos.push(twin);
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var v = e.target;
+          if (e.isIntersecting) { if (!v.classList.contains('is-hidden')) play(v); }
+          else v.pause();
+        });
+      }, { rootMargin: '120px 0px' });
+      videos.forEach(function (v) { io.observe(v); });
+    } else {
+      videos.forEach(play);
+    }
+  }
+
+  /* ── Reveals. Startstand wordt alleen door GSAP gezet (y: 0 erbij, zodat er nooit een
+        CSS-transform bij opgeteld wordt: dat was de half opgeschoven kop uit v1). Eén keer, geen reset. ── */
+
+  /* 11b: koppen schuiven zacht uit een masker */
+  function slideUp(heading) {
+    var spans = heading.querySelectorAll('.line > span');
+    gsap.set(spans, { y: 0, yPercent: 110 });
+    ScrollTrigger.create({ trigger: heading, start: 'top 85%', once: true, onEnter: function () {
+      gsap.to(spans, { yPercent: 0, duration: 1.2, ease: 'expo.out', stagger: 0.08, overwrite: true,
+        onComplete: function () { gsap.set(spans, { clearProps: 'transform' }); } });
+    } });
+  }
+
+  /* kleine blokken: rustig omhoog (Gifu: 0,8 s, sterke ease-out) */
+  function fadeUp(el) {
+    gsap.set(el, { opacity: 0, y: 24 });
+    ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true, onEnter: function () {
+      gsap.to(el, { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out', overwrite: true,
+        onComplete: function () { gsap.set(el, { clearProps: 'opacity,transform' }); } });
+    } });
+  }
+
+  /* 12: beeld opent uit een masker, van onder */
+  function imageReveal(wrap) {
+    var media = wrap.querySelector('img, video');
+    gsap.set(wrap, { clipPath: 'inset(100% 0% 0% 0%)' });
+    gsap.set(media, { scale: 1.3 });
+    ScrollTrigger.create({ trigger: wrap, start: 'top 75%', once: true, onEnter: function () {
+      gsap.timeline({ onComplete: function () { gsap.set(media, { clearProps: 'transform' }); wrap.classList.add('is-done'); } })
+        .to(wrap, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1, ease: 'power2.out', delay: 0.2 }, 0)
+        .to(media, { scale: 1, duration: 4, ease: 'power2.out' }, 0);
+    } });
+  }
+
+  /* 19: vast beeld, gangen scrollen langs */
+  function stickyStack() {
+    var cards = $$('.course'), states = $$('.stack-img'), label = $('#stack-label');
+    function activate(num, text) {
+      cards.forEach(function (c) { c.classList.toggle('is-active', c.dataset.course === num); });
+      states.forEach(function (s) { s.classList.toggle('is-active', s.dataset.state === num); });
+      if (label && text) label.textContent = text;
+    }
+    cards.forEach(function (card) {
+      ScrollTrigger.create({
+        trigger: card, start: 'top 60%', end: 'bottom 40%',
+        onEnter: function () { activate(card.dataset.course, card.dataset.label); },
+        onEnterBack: function () { activate(card.dataset.course, card.dataset.label); }
+      });
+    });
+  }
+
+  if (HAS_GSAP && !REDUCED) {
+    $$('[data-reveal]').forEach(slideUp);
+    $$('[data-fade]').forEach(fadeUp);
+    $$('[data-reveal-img]').forEach(imageReveal);
+    stickyStack();
+    /* posities herrekenen zodra fonts en beelden er zijn */
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+    window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+  } else if (HAS_GSAP) {
+    stickyStack();
+  } else {
+    $$('.course').forEach(function (c) { c.classList.add('is-active'); });
+  }
+  /* startstand staat: nu pas zichtbaar maken (zonder GSAP gewoon alles tonen) */
+  document.documentElement.classList.add('gsap-ready');
+
+  /* ── 06: oneindige strook (CSS-lus; JS dupliceert alleen) ── */
+  if (!REDUCED) {
+    $$('.scroller').forEach(function (scroller) {
+      scroller.setAttribute('data-animated', true);
+      var inner = scroller.querySelector('.scroller__inner');
+      Array.prototype.slice.call(inner.children).forEach(function (item) {
+        var copy = item.cloneNode(true);
+        copy.setAttribute('aria-hidden', true);
+        inner.appendChild(copy);
+      });
+    });
+  }
+
+  /* ── 27c: magnetische knop, alleen de ene reserveerknop, alleen met een echte cursor ── */
+  var btn = $('#magnet');
+  if (btn && !REDUCED && window.matchMedia('(hover: hover)').matches) {
+    btn.style.transition = 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)';
+    btn.addEventListener('mousemove', function (e) {
+      var rect = btn.getBoundingClientRect();
+      var cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+      btn.style.transform = 'translate(' + ((e.clientX - cx) * 0.3) + 'px,' + ((e.clientY - cy) * 0.3) + 'px)';
+    });
+    btn.addEventListener('mouseleave', function () { btn.style.transform = 'translate(0,0)'; });
+  }
+
+  /* ── ankers zonder Lenis ── */
+  if (!lenis) {
+    $$('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' }); }
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
