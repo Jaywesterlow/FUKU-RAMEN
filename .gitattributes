@@ -1,0 +1,5 @@
+# one line ending everywhere, so Prettier and git agree on Windows
+* text=auto eol=lf
+*.jpg binary
+*.png binary
+*.mp4 binary
