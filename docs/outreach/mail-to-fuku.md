@@ -1,24 +1,27 @@
 # Mail to Fuku Ramen
 
-Approved by Jaymar on 27 September 2026. Saved as a draft in jay@jwcreative.nl; he sends it himself. Check with him whether it went out before writing a follow-up.
+Current draft, written 1 October 2026 with the story-first cold mail skill. Saved as a draft in jay@jwcreative.nl (Drafts, uid 35); Jaymar checks and sends it himself. Not sent yet.
 
 ```
 To:      hello@fukuramenamsterdam.com
-Subject: built this for fuku
+Subject: from osaka to ingogostraat
 
 Hi Jakub,
 
-Over the past two weeks I studied how ramen restaurants in Amsterdam present themselves online, and Fuku stuck with me. Six courses that end in a bowl is a story your current site barely tells.
+You went to Osaka to learn ramen at the source, and now every tasting menu at Ingogostraat builds up to your own bowl. Your homepage gives that story two words: "Ramen redefined."
 
-So I built you a new one, with your photos and the evening course by course: https://fuku-ramen.vercel.app
+I've made Fuku a site that tells the rest, with your photos and the evening told course by course, in English and Dutch: https://fuku-ramen.vercel.app
 
-It's yours to look at and costs you nothing. I'll call later this week to hear what you think.
+There's nothing to pay for it. I'll give you a ring this week to find out if it feels like Fuku.
 
 Jaymar Westerlow
 JW Creative
 jwcreative.nl
 ```
 
-"Past two weeks" and "later this week" are Jaymar's promises. If the mail goes out later, both need a fresh look.
+- Way in: the person. Order: person, story, gift, call.
+- Sources: Miyajima Ramen School in Osaka, 2020 (crowdaboutnow.nl/campagnes/fukuramen; Misset Horeca). "Ramen redefined." is their homepage tagline.
+- "This week" is Jaymar's promise. If the mail goes out later, change it.
+- Older drafts uid 32, 33 ("your homepage") and 34 ("built this for fuku", approved 27 September) are superseded. Delete them. The wording of uid 34 is used up; do not reuse it.
 
-Follow-up call: +31 6 42 60 85 96, Wednesday to Saturday 11:00–18:00.
+Follow-up call: +31 6 42 60 85 96, Wednesday to Saturday 11:00–18:00. Open with Osaka, or with how the evening builds up to the bowl.
