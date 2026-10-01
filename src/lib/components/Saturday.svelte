@@ -24,8 +24,8 @@
 		<div class="text">
 			<Eyebrow kanji="土">{text.eyebrow}</Eyebrow>
 			<RevealHeading lines={text.lines} />
-			<p class="lede" {@attach fadeUp()}>{text.lede}</p>
-			<dl {@attach fadeUp()}>
+			<p class="lede" data-reveal="fade" {@attach fadeUp()}>{text.lede}</p>
+			<dl data-reveal="fade" {@attach fadeUp()}>
 				{#each facts as fact (fact.term)}
 					<div>
 						<dt>{fact.term}</dt>

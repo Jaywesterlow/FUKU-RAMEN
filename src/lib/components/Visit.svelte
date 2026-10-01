@@ -23,7 +23,7 @@
 	</div>
 
 	<div class="wrap cols">
-		<div class="col" {@attach fadeUp()}>
+		<div class="col" data-reveal="fade" {@attach fadeUp()}>
 			<h3>{text.hours}</h3>
 			<div class="hours">
 				{#each restaurant.hours as block (block.label)}
@@ -39,7 +39,7 @@
 			</div>
 		</div>
 
-		<div class="col" {@attach fadeUp()}>
+		<div class="col" data-reveal="fade" {@attach fadeUp()}>
 			<h3>{text.find}</h3>
 			<p>
 				<a class="ul" href={restaurant.address.maps} target="_blank" rel="noopener">
@@ -55,7 +55,7 @@
 			</p>
 		</div>
 
-		<div class="col" {@attach fadeUp()}>
+		<div class="col" data-reveal="fade" {@attach fadeUp()}>
 			<h3>{text.good}</h3>
 			<ul>
 				{#each goodToKnow as item (item)}

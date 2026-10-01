@@ -10,6 +10,10 @@ import { gsap, ScrollTrigger } from './scroll';
  * Timings come from the animation library (11b, 12, 19) and are not tuned here.
  * GSAP alone sets the start state: a CSS transform on the same element would be added
  * on top of it and leave the heading stuck below its mask.
+ *
+ * Pre-state (library 12): until GSAP has run, `html.js [data-reveal]` is `visibility: hidden`
+ * (app.css), so nothing flashes before hydration. Each attachment sets its start state and
+ * then `visibility: visible` inline in the same frame: from then on GSAP owns the element.
  */
 
 /** 11b — lines rise from their mask: 110 % → 0, 1.2 s expo-out, 80 ms stagger. */
@@ -19,6 +23,7 @@ export function revealLines(): Attachment<HTMLElement> {
 
 		const lines = node.querySelectorAll<HTMLElement>('.line > span');
 		gsap.set(lines, { y: 0, yPercent: 110 });
+		gsap.set(node, { visibility: 'visible' });
 
 		const trigger = ScrollTrigger.create({
 			trigger: node,
@@ -48,7 +53,7 @@ export function fadeUp(): Attachment<HTMLElement> {
 	return (node) => {
 		if (prefersReducedMotion.current) return;
 
-		gsap.set(node, { opacity: 0, y: 24 });
+		gsap.set(node, { opacity: 0, y: 24, visibility: 'visible' });
 
 		const trigger = ScrollTrigger.create({
 			trigger: node,
@@ -85,14 +90,14 @@ export function revealFrame(onDone?: () => void): Attachment<HTMLElement> {
 		}
 
 		const media = node.querySelector<HTMLElement>('img, video');
-		gsap.set(node, { clipPath: 'inset(100% 0% 0% 0%)' });
+		gsap.set(node, { clipPath: 'inset(100% 0% 0% 0%)', visibility: 'visible' });
 		if (media) gsap.set(media, { scale: 1.3 });
 
 		let timeline: gsap.core.Timeline | undefined;
 
 		const trigger = ScrollTrigger.create({
 			trigger: node,
-			start: 'top 75%',
+			start: 'top 60%',
 			once: true,
 			onEnter: () => {
 				timeline = gsap.timeline({

@@ -12,12 +12,12 @@ Verhaal in vier stappen:
 4. Reserveren: drie kolommen (uren, adres, goed om te weten: 1e van de maand om 12:00, €10 aanbetaling, geen parfum) en één magnetische knop.
 
 Signatuurmoment (één): **De avond**. `position: sticky` beeld, 100 svh hoog, beeld gecentreerd; een IntersectionObserver met `rootMargin: -40% 0 -40%` maakt de gang actief die de middenband raakt; beeld wisselt met opacity 0,5 s, blok van 35 % naar 100 % in 0,4 s `cubic-bezier(.16,1,.3,1)`, de gangregel komt 0,1 s later op. Bibliotheek 19, timing ongewijzigd, trigger vervangen door IO.
-Bewegingssoorten (max drie): masker-reveal (11b tekst: `translateY(110%)→0`, 1,2 s `cubic-bezier(.16,1,.3,1)`, 80 ms stagger; 12 beeld: `clip-path inset` 1 s na 0,2 s, schaal 1,3→1 over 4 s; Gifu-fade voor blokken: 0,8 s, 24 px) · sticky-wissel (19) · lus (06 fotostrook; hero-videoloop met kruisfade van 0,9 s tussen twee kopieën, zodat de lus nooit springt).
+Bewegingssoorten (max drie): masker-reveal (11b tekst: `yPercent 110→0`, 1,2 s `expo.out` (in CSS `cubic-bezier(.19,1,.22,1)`), 80 ms stagger; 12 beeld: `clip-path inset` 1 s na 0,2 s, schaal 1,3→1 over 4 s; Gifu-fade voor blokken: 0,8 s, 24 px) · sticky-wissel (19) · lus (06 fotostrook; hero-videoloop met kruisfade van 0,9 s tussen twee kopieën, zodat de lus nooit springt).
 Afwerking: loader **geen** · menu **geen** (vaste balk wisselt na de hero van wit naar zwart) · hover: knop-fill schuift van onder omhoog **met een eigen kopie van het label erin** (clip-path), dus de tekst is in elk frame leesbaar; pijl 4 px; onderstreping loopt in of uit; kaarten in "twee manieren" zijn in hun geheel een link (beeld 1,03×, pijl schuift) · cursor **geen** · knop: 27c magnetisch, alleen de ene reserveerknop, alleen `(hover: hover)`.
 Mobiel: sticky beeld boven de gangen (44 svh), gangregels altijd zichtbaar, magnetisch uit, scroll-pijl weg, infobalk gestapeld, videoloops blijven (muted, playsinline, alleen laden in beeld).
 Reduced motion: geen Lenis, geen reveals (alles staat er), video's stil op poster, strook stil, pijl stil.
 
-Vangrails: [x] ≤3 bewegingssoorten [x] tekst <300 ms leesbaar (hero-kop CSS-load-in, reveals alleen onder de vouw, trigger vanaf 15 % in beeld) [x] geen scroll-lock [x] reduced motion volwaardig [x] Lighthouse mobiel ≥90 haalbaar (geen animatielibrary, video's `preload="metadata"` + poster, beelden lazy, fonts met `display=swap`)
+Vangrails: [x] ≤3 bewegingssoorten [x] tekst <300 ms leesbaar (hero-kop CSS-load-in, reveals alleen onder de vouw; koppen bij `top 85%`, beelden bij `top 60%`) [x] geen scroll-lock [x] reduced motion volwaardig [x] Lighthouse mobiel ≥90 haalbaar (GSAP + ScrollTrigger + Lenis, geen andere animatielibrary; video's `preload="metadata"` + poster, beelden lazy, fonts met `display=swap`)
 
 Wat verandert er aan de beweging t.o.v. nu: van een statische fotogalerij naar een pagina die in één tempo ademt: bewegend beeld in plaats van stilstaand, één sticky verhaal voor het menu, en verder alleen reveals die de foto's laten binnenkomen.
 
@@ -36,11 +36,11 @@ Wat v2 veranderde t.o.v. v1 (feedback Jaymar + concurrentieonderzoek):
 
 | Slot | Id | Wat |
 |---|---|---|
-| tekst | 11b | Koppen schuiven zacht uit een masker (CSS, zelfde timing) |
-| scroll | 12 | Beeld opent uit een masker, van onder (CSS, zelfde timing) |
-| scroll · signatuur | 19 | Vast beeld, gangen scrollen langs (IO-trigger) |
-| galerij | 06 | Oneindige fotostrook |
-| knop | 27c | Magnetische reserveerknop |
+| tekst | 11b | Koppen schuiven zacht uit een masker (GSAP + ScrollTrigger `top 85%`; hero-kop CSS bij laden, `cubic-bezier(.19,1,.22,1)`, 80 ms stagger) |
+| scroll | 12 | Beeld opent uit een masker, van onder (GSAP + ScrollTrigger `top 60%`) |
+| scroll · signatuur | 19 | Vast beeld, gangen scrollen langs (ScrollTrigger `top 60%`–`bottom 40%`) |
+| galerij | 06 | Oneindige fotostrook (CSS, randen 12 %/88 %) |
+| knop | 27c | Magnetische reserveerknop; `:active` `scale: .97` op alle knoppen |
 | hover/cursor | geen | CSS-hover op CTA's en kaarten, verder rust |
 | navigatie | geen | Vaste balk zonder animatie |
 | achtergrond | geen | De foto's zijn de achtergrond |
@@ -56,6 +56,16 @@ Uit `research/fuku.md`: meta description "Ramen redefined. Seasonal tasting menu
 ## v3 (27-09-2026)
 
 - Reveals terug op GSAP + ScrollTrigger + Lenis (klasse B), op verzoek van Jaymar. Timings 11b, 12 en 19 ongewijzigd.
-- Oorzaak van de half opgeschoven koppen in v1 gevonden: CSS zette `translateY(110%)` en GSAP telde daar `yPercent: 110` bij op, dus de kop eindigde 110 % te laag. Nu zet alleen GSAP de startstand (`y: 0, yPercent: 110`); CSS verbergt met `visibility` tot `gsap-ready`.
+- Oorzaak van de half opgeschoven koppen in v1 gevonden: CSS zette `translateY(110%)` en GSAP telde daar `yPercent: 110` bij op, dus de kop eindigde 110 % te laag. Nu zet alleen GSAP de startstand (`y: 0, yPercent: 110`); de beginstaat staat hieronder.
 - Triggers zijn `once`, tween wordt pas bij binnenkomst gemaakt, `ScrollTrigger.refresh()` na fonts en load.
 - Knop-hover één richting: fill komt van onder in, en verlaat de knop bij unhover via de bovenkant (onder → boven, beide keren).
+
+## Beginstaat (v4, 01-10-2026)
+
+Zoals bibliotheek 12: een inline script in de `<head>` van `app.html` zet `html.js`, vóór de eerste paint. `app.css` verbergt dan alleen de reveal-doelen, `html.js [data-reveal] { visibility: hidden }` (koppen `lines`, beelden `frame`, blokken `fade`), binnen `prefers-reduced-motion: no-preference`.
+
+- Elke attachment zet eerst zijn startstand (masker 110 %, `clip-path`, opacity 0) en dan in hetzelfde frame `visibility: visible` inline. Vanaf dan bepaalt GSAP alles; CSS zet nooit een transform.
+- Zonder JS geen `js`-klasse, dus alles staat er. Met reduced motion geldt de regel niet en slaan de attachments over.
+- Vangnet: een animatie met 3 s vertraging zet `visibility: visible`. Valt JS weg na het zetten van de klasse, dan staat de inhoud er na 3 s alsnog.
+- De hero-kop is geen reveal-doel (CSS-load-in), dus boven de vouw staat de tekst er meteen. Een kop of beeld dat bij laden al in beeld is (herladen halverwege, `#visit`) start zijn reveal zodra ScrollTrigger draait.
+- Timings naar de bibliotheek: 12 start bij `top 60%` (was `top 75%`); hero-kop 80 ms stagger met `expo.out` (`--ease-expo`); strookrand 12 %/88 % (06); knop `:active` 0,97 (27c, met de `scale`-eigenschap zodat de magnetische translate blijft en de fill gewoon onder in, boven uit gaat).

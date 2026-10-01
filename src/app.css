@@ -60,6 +60,8 @@
 	--max: 1280px;
 	--section: clamp(88px, 13vw, 176px);
 	--ease: cubic-bezier(0.16, 1, 0.3, 1);
+	/* GSAP's expo.out in CSS, for the one 11b reveal that runs without GSAP (the hero heading) */
+	--ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
 
 	color-scheme: light;
 }
@@ -167,6 +169,24 @@ h3 {
 .line > span {
 	display: inline-block;
 	will-change: transform;
+}
+
+/* ── Reveal pre-state (library 12) ──
+   A reveal target is hidden from the first paint until its GSAP attachment has set the start
+   state and handed it back with an inline `visibility: visible`. Only with JS (the `js` class
+   comes from an inline script in app.html) and only for visitors who did not ask for less
+   motion. Visibility only, never a transform: GSAP alone sets where the element starts.
+   Safety: if JS dies after the class is set, the delayed animation shows it anyway. */
+@media (prefers-reduced-motion: no-preference) {
+	html.js [data-reveal] {
+		visibility: hidden;
+		animation: reveal-fallback 0s 3s forwards;
+	}
+}
+@keyframes reveal-fallback {
+	to {
+		visibility: visible;
+	}
 }
 
 /* ── Links ── */

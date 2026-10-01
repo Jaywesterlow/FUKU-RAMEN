@@ -22,6 +22,7 @@
 	style:--ratio={ratio}
 	style:--ratio-narrow={ratioNarrow ?? ratio}
 	style:--max-height={maxHeight}
+	data-reveal="frame"
 	{@attach revealFrame(() => (landed = true))}
 >
 	{@render children()}

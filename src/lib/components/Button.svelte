@@ -77,6 +77,11 @@
 		letter-spacing: 0.16em;
 		text-transform: uppercase;
 		will-change: transform;
+		transition: scale 0.2s var(--ease);
+	}
+	/* 27c press: the `scale` property, so it stacks on the magnetic translate instead of replacing it */
+	.btn:active {
+		scale: 0.97;
 	}
 	.btn > span {
 		grid-area: 1 / 1;

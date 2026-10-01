@@ -14,6 +14,7 @@
 <svelte:element
 	this={level}
 	class={['display', { 'on-load': on === 'load' }]}
+	data-reveal={on === 'scroll' ? 'lines' : undefined}
 	{@attach on === 'scroll' && revealLines()}
 >
 	{#each lines as line (line)}
@@ -25,10 +26,10 @@
 	@media (prefers-reduced-motion: no-preference) {
 		.on-load .line > span {
 			transform: translateY(110%);
-			animation: rise 1.2s var(--ease) forwards;
+			animation: rise 1.2s var(--ease-expo) forwards;
 		}
 		.on-load .line:nth-child(2) > span {
-			animation-delay: 0.1s;
+			animation-delay: 0.08s;
 		}
 	}
 	@keyframes rise {
