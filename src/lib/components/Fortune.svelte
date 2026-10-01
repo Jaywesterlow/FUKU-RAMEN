@@ -62,20 +62,21 @@
 	}
 	.text {
 		display: grid;
-		gap: 1.8rem;
+		gap: var(--space-6);
 		max-width: 52rem;
 	}
 	figure {
 		margin-top: clamp(56px, 9vw, 120px);
 		display: grid;
-		gap: 1rem;
+		gap: var(--space-4);
 	}
 	figcaption {
 		display: flex;
 		justify-content: space-between;
-		gap: 1rem;
-		font-size: 0.72rem;
-		letter-spacing: 0.14em;
+		gap: var(--space-4);
+		font-size: var(--text-label);
+		font-weight: var(--label-weight);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
 		color: var(--ink-2);
 	}

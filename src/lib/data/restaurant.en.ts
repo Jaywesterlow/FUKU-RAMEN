@@ -27,7 +27,7 @@ export const en: Copy = {
 		{ title: 'To begin', line: 'Small bites and a first pour.' },
 		{ title: 'Raw', line: 'Fish and vegetables at their moment.' },
 		{ title: 'From the charcoal', line: 'Straight from the fire to the counter.' },
-		{ title: "The season's plate", line: 'Whatever is at its best this month.' },
+		{ title: 'The season’s plate', line: 'Whatever is at its best this month.' },
 		{ title: 'The bowl', line: 'House-made ramen, as the main course.' },
 		{ title: 'To finish', line: 'Something sweet, and a last sake.' }
 	],
@@ -35,7 +35,7 @@ export const en: Copy = {
 		{
 			title: 'The evening',
 			line: 'Six courses, ramen as the main.',
-			detail: '€89 · reservations only',
+			detail: '€89, reservations only',
 			alt: 'A course on a stone plate'
 		},
 		{
@@ -46,7 +46,7 @@ export const en: Copy = {
 		}
 	],
 	evening: {
-		priceNote: 'per person · reservations only',
+		priceNote: 'per person, reservations only',
 		note: 'A sample structure. The menu follows the season.'
 	},
 	saturdayFacts: [
@@ -90,14 +90,14 @@ export const en: Copy = {
 		},
 		ways: { eyebrow: 'Two ways to eat here', lines: ['An evening, or a Saturday.'] },
 		evening: {
-			eyebrow: 'The evening · Wednesday to Friday',
+			eyebrow: 'The evening, Wednesday to Friday',
 			lines: ['Six courses.', 'One bowl at the end.'],
 			sample: 'Sample evening',
 			course: 'Course',
 			reserve: 'Reserve the evening'
 		},
 		saturday: {
-			eyebrow: 'Saturday · 13:00 – 19:30',
+			eyebrow: 'Saturday, 13:00 – 19:30',
 			lines: ['The izakaya.'],
 			lede: 'À la carte from one in the afternoon. A ramen special that changes every week, plates to share, sake.',
 			video: 'Noodles lifted from a bowl of ramen',
@@ -116,7 +116,7 @@ export const en: Copy = {
 			waitlist:
 				'Fully booked? The waiting list in the booking system emails you when a table frees up.'
 		},
-		footer: { reserve: 'Reserve', top: 'Back to top', credit: 'Concept demo · jwcreative.nl' },
+		footer: { reserve: 'Reserve', top: 'Back to top', credit: 'Concept demo, jwcreative.nl' },
 		demo: {
 			title: 'This is a concept demo.',
 			line: 'On the real site, booking would open right here, on this page.',

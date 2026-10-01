@@ -38,7 +38,7 @@ export const nl: Copy = {
 		{
 			title: 'De avond',
 			line: 'Zes gangen, met ramen als hoofdgerecht.',
-			detail: '€89 · alleen op reservering',
+			detail: '€89, alleen op reservering',
 			alt: 'Een gang op een stenen bord'
 		},
 		{
@@ -49,7 +49,7 @@ export const nl: Copy = {
 		}
 	],
 	evening: {
-		priceNote: 'per persoon · alleen op reservering',
+		priceNote: 'per persoon, alleen op reservering',
 		note: 'Een voorbeeldopbouw. Het menu volgt het seizoen.'
 	},
 	saturdayFacts: [
@@ -99,14 +99,14 @@ export const nl: Copy = {
 		},
 		ways: { eyebrow: 'Twee manieren om hier te eten', lines: ['Een avond, of een zaterdag.'] },
 		evening: {
-			eyebrow: 'De avond · woensdag t/m vrijdag',
+			eyebrow: 'De avond, woensdag t/m vrijdag',
 			lines: ['Zes gangen.', 'Eén kom aan het eind.'],
 			sample: 'Voorbeeldavond',
 			course: 'Gang',
 			reserve: 'Reserveer de avond'
 		},
 		saturday: {
-			eyebrow: 'Zaterdag · 13:00 – 19:30',
+			eyebrow: 'Zaterdag, 13:00 – 19:30',
 			lines: ['De izakaya.'],
 			lede: 'À la carte vanaf één uur ’s middags. Een ramenspecial die elke week wisselt, gerechten om te delen, sake.',
 			video: 'Noedels die uit een kom ramen worden getild',
@@ -128,7 +128,7 @@ export const nl: Copy = {
 		footer: {
 			reserve: 'Reserveer',
 			top: 'Terug naar boven',
-			credit: 'Conceptdemo · jwcreative.nl'
+			credit: 'Conceptdemo, jwcreative.nl'
 		},
 		demo: {
 			title: 'Dit is een conceptdemo.',

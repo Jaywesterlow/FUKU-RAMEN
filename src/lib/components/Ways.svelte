@@ -50,7 +50,7 @@
 	}
 	header {
 		display: grid;
-		gap: 1.2rem;
+		gap: var(--space-5);
 		margin-bottom: clamp(40px, 6vw, 72px);
 	}
 	.grid {
@@ -60,7 +60,7 @@
 	}
 	.way {
 		display: grid;
-		gap: 1.2rem;
+		gap: var(--space-4);
 		align-content: start;
 	}
 	/* RevealFrame marks itself .landed when its reveal is done; only then the photo may move */
@@ -70,19 +70,20 @@
 	.meta {
 		display: flex;
 		justify-content: space-between;
-		gap: 1rem;
+		gap: var(--space-4);
 		border-top: 1px solid var(--ink);
-		padding-top: 1rem;
-		font-size: 0.72rem;
-		letter-spacing: 0.14em;
+		padding-top: var(--space-4);
+		font-size: var(--text-label);
+		font-weight: var(--label-weight);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
 	}
 	.title {
 		display: flex;
 		justify-content: space-between;
 		align-items: baseline;
-		gap: 1rem;
-		font-size: 1.1rem;
+		gap: var(--space-4);
+		font-size: var(--text-body);
 	}
 	.way:hover .title :global(svg) {
 		transform: translateX(6px);
@@ -91,13 +92,13 @@
 		color: var(--ink-2);
 	}
 	.detail {
-		font-size: 0.95rem;
+		font-size: var(--text-small);
 		white-space: nowrap;
 	}
 	@media (max-width: 700px) {
 		.grid {
 			grid-template-columns: 1fr;
-			gap: 56px;
+			gap: var(--space-7);
 		}
 	}
 </style>

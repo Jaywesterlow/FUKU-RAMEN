@@ -52,7 +52,7 @@
 
 	.panel {
 		display: grid;
-		gap: 1rem;
+		gap: var(--space-4);
 		padding: clamp(1.6rem, 5vw, 2.4rem);
 	}
 	/* .panel: outranks the global h2.display size, which is for section headings */
@@ -67,17 +67,20 @@
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		gap: 1.2rem 1.6rem;
-		margin-top: 0.6rem;
+		gap: var(--space-4) var(--space-5);
+		margin-top: var(--space-2);
 	}
 	.close {
-		min-height: 2.75rem;
+		min-width: var(--tap);
+		min-height: var(--tap);
 		padding: 0;
 		border: 0;
 		background: none;
 		color: inherit;
-		font: 500 0.74rem/1 var(--font-body);
-		letter-spacing: 0.16em;
+		font: var(--label-weight) var(--text-label) / 1 var(--font-body);
+		letter-spacing: var(--label-tracking);
+		/* the underline follows the text, not the --tap high box */
+		--ul-offset: calc(50% - 0.5lh - 0.15em);
 		text-transform: uppercase;
 		cursor: pointer;
 	}

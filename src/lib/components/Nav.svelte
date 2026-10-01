@@ -19,14 +19,14 @@
 	class={['nav', { solid: pastHero && !menuOpen, 'over-menu': menuOpen }]}
 	aria-label={text.label}
 >
-	<a class="brand" href="#top" onclick={() => (menuOpen = false)}>
+	<a class="brand tap" href="#top" onclick={() => (menuOpen = false)}>
 		<span class="jp" aria-hidden="true">福</span>
 		<span>{restaurant.name}</span>
 	</a>
 
 	<div class="links">
 		{#each links as link (link.href)}
-			<a class="ul" href={link.href}>{link.label}</a>
+			<a class="ul tap" href={link.href}>{link.label}</a>
 		{/each}
 	</div>
 
@@ -44,7 +44,7 @@
 			</Button>
 		</div>
 		<button
-			class="burger"
+			class="burger tap"
 			aria-expanded={menuOpen}
 			aria-controls="menu"
 			onclick={() => (menuOpen = !menuOpen)}
@@ -57,9 +57,9 @@
 {#if menuOpen}
 	<div class="menu" id="menu" transition:fade={{ duration: 300 }}>
 		{#each links as link (link.href)}
-			<a href={link.href} onclick={() => (menuOpen = false)}>{link.label}</a>
+			<a class="tap" href={link.href} onclick={() => (menuOpen = false)}>{link.label}</a>
 		{/each}
-		<p class="small">{restaurant.address.street} · {restaurant.address.area}</p>
+		<p class="small">{restaurant.address.street}, {restaurant.address.area}</p>
 	</div>
 {/if}
 
@@ -71,8 +71,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 1rem;
-		padding: calc(16px + env(safe-area-inset-top, 0px)) var(--gutter) 16px;
+		gap: var(--space-4);
+		padding: calc(var(--space-4) + env(safe-area-inset-top, 0px)) var(--gutter) var(--space-4);
 		color: #fff;
 		transition:
 			color 0.35s,
@@ -89,12 +89,10 @@
 		color: var(--ink);
 	}
 	.brand {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.7em;
-		font-size: 0.74rem;
-		font-weight: 500;
-		letter-spacing: 0.2em;
+		gap: var(--space-2);
+		font-size: var(--text-label);
+		font-weight: var(--label-weight);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
 	}
 	.brand .jp {
@@ -103,29 +101,32 @@
 	}
 	.links {
 		display: flex;
-		gap: 2.2rem;
-		font-size: 0.74rem;
-		font-weight: 500;
-		letter-spacing: 0.16em;
+		gap: var(--space-6);
+		font-size: var(--text-label);
+		font-weight: var(--label-weight);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
-	}
-	.links a {
-		padding-block: 0.3em;
 	}
 	.right {
 		display: flex;
 		align-items: center;
-		gap: 1.2rem;
+		gap: var(--space-4);
+	}
+	/* the button is --tap high; the bar keeps its height */
+	.reserve {
+		margin-block: calc((var(--tap) - 2rem) / -2);
 	}
 	.burger {
 		display: none;
 		background: none;
 		border: 0;
 		color: inherit;
-		font: 500 0.74rem/1 var(--font-body);
-		letter-spacing: 0.16em;
+		font: var(--label-weight) var(--text-label) / 1 var(--font-body);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
-		padding: 0.6em 0;
+		padding: 0;
+		/* --tap high, but the bar keeps its old 26px row so the sticky photo below still fits */
+		margin-block: calc((1.625rem - var(--tap)) / 2);
 		cursor: pointer;
 	}
 	.menu {
@@ -137,7 +138,7 @@
 		display: grid;
 		place-content: center;
 		text-align: center;
-		gap: 1.6rem;
+		gap: var(--space-5);
 	}
 	.menu a {
 		font-family: var(--font-display);
@@ -146,7 +147,7 @@
 		line-height: 1.1;
 	}
 	.menu .small {
-		margin-top: 1.5rem;
+		margin-top: var(--space-5);
 	}
 	@media (max-width: 840px) {
 		.links,
@@ -154,7 +155,7 @@
 			display: none;
 		}
 		.burger {
-			display: inline-block;
+			display: inline-flex;
 		}
 	}
 </style>
