@@ -71,6 +71,7 @@
 		margin-top: var(--space-2);
 	}
 	.close {
+		min-width: var(--tap);
 		min-height: var(--tap);
 		padding: 0;
 		border: 0;
