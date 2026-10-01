@@ -34,6 +34,10 @@
 		background: var(--paper);
 		color: var(--ink);
 	}
+	/* no scrolling behind the dialog, also when Lenis is off (reduced motion) */
+	:global(html:has(dialog[open])) {
+		overflow: hidden;
+	}
 	.dialog::backdrop {
 		background: rgb(15 14 13 / 0.55);
 	}
@@ -41,7 +45,7 @@
 	@media (prefers-reduced-motion: no-preference) {
 		.dialog[open],
 		.dialog[open]::backdrop {
-			animation: appear 0.24s var(--ease);
+			animation: appear 0.45s var(--ease);
 		}
 	}
 	@keyframes appear {
