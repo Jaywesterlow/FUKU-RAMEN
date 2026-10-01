@@ -23,3 +23,6 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 # research and the static demo are reference material, not source
+
+# Claude Code worktrees: other checkouts of this repo, not ours to format or lint
+.claude/worktrees/

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reservations } from '$lib/state/reservations.svelte';
 	import { fade } from 'svelte/transition';
 	import { photos } from '$lib/assets/photos';
 	import type { Course, UI } from '$lib/data/restaurant';
@@ -11,8 +12,10 @@
 		courses: Course[];
 		evening: { price: string; priceNote: string; note: string };
 		text: UI['evening'];
+		/** the plain booking link, for visitors without JavaScript */
+		reserveUrl: string;
 	};
-	let { courses, evening, text }: Props = $props();
+	let { courses, evening, text, reserveUrl }: Props = $props();
 
 	/** the course in the middle of the screen; the photo and the caption follow it */
 	let activeId = $state(1);
@@ -72,7 +75,7 @@
 
 		<footer>
 			<p class="price">{evening.price} <small>{evening.priceNote}</small></p>
-			<Button href="#visit" variant="dark">{text.reserve}</Button>
+			<Button href={reserveUrl} onclick={reservations.open} variant="dark">{text.reserve}</Button>
 		</footer>
 	</div>
 </section>

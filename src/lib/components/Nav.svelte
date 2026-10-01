@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reservations } from '$lib/state/reservations.svelte';
 	import { fade } from 'svelte/transition';
 	import { innerHeight, scrollY } from 'svelte/reactivity/window';
 	import type { Locale, NavLink, Restaurant, UI } from '$lib/data/restaurant';
@@ -32,7 +33,13 @@
 	<div class="right">
 		<LangSwitch {locale} label={text.language} />
 		<div class="reserve">
-			<Button href="#visit" variant={pastHero ? 'outline' : 'light'} size="sm" arrow={false}>
+			<Button
+				href={restaurant.reservations.url}
+				onclick={reservations.open}
+				variant={pastHero ? 'outline' : 'light'}
+				size="sm"
+				arrow={false}
+			>
 				{text.reserve}
 			</Button>
 		</div>

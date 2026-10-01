@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reservations } from '$lib/state/reservations.svelte';
 	import { scrollY } from 'svelte/reactivity/window';
 	import type { OpeningWords, Restaurant, UI } from '$lib/data/restaurant';
 	import { opening } from '$lib/state/opening.svelte';
@@ -24,7 +25,9 @@
 		<RevealHeading level="h1" on="load" lines={text.lines} />
 		<p class="lede rise d2">{text.lede}</p>
 		<div class="cta rise d3">
-			<Button href="#visit" variant="light">{text.reserve}</Button>
+			<Button href={restaurant.reservations.url} onclick={reservations.open} variant="light">
+				{text.reserve}
+			</Button>
 			<a class="more" href="#evening">{text.more} <Arrow /></a>
 		</div>
 	</div>

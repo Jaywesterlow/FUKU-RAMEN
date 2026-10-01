@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reservations } from '$lib/state/reservations.svelte';
 	import { resolve } from '$app/paths';
 	import logo from '$lib/assets/logo.png?enhanced';
 	import { site, type Locale, type Restaurant, type UI } from '$lib/data/restaurant';
@@ -30,7 +31,8 @@
 
 		<div class="links">
 			<a class="ul" href={restaurant.instagram} target="_blank" rel="noopener">Instagram</a>
-			<a class="ul" href="#visit">{text.reserve}</a>
+			<a class="ul" href={restaurant.reservations.url} onclick={reservations.open}>{text.reserve}</a
+			>
 			<a class="ul" href="#top">{text.top}</a>
 			<a class="ul" href={otherHref} hreflang={other} lang={other} data-sveltekit-reload>
 				{site.languages[other].name}

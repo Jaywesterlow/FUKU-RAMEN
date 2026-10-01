@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reservations } from '$lib/state/reservations.svelte';
 	import type { Restaurant, UI } from '$lib/data/restaurant';
 	import { fadeUp } from '$lib/motion/attachments';
 	import { opening } from '$lib/state/opening.svelte';
@@ -66,7 +67,9 @@
 	</div>
 
 	<div class="wrap reserve">
-		<Button href={restaurant.reserveUrl} size="lg" external magnetic>{text.reserve}</Button>
+		<Button href={restaurant.reservations.url} onclick={reservations.open} size="lg" magnetic
+			>{text.reserve}</Button
+		>
 		<p class="small">{text.waitlist}</p>
 	</div>
 </section>

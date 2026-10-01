@@ -14,6 +14,7 @@
 		external?: boolean;
 		/** 27c: the button leans 30 % toward the cursor. For the one button that matters. */
 		magnetic?: boolean;
+		onclick?: (event: MouseEvent & { currentTarget: EventTarget & HTMLAnchorElement }) => void;
 		children: Snippet;
 	};
 
@@ -24,6 +25,7 @@
 		arrow = true,
 		external = false,
 		magnetic = false,
+		onclick,
 		children
 	}: Props = $props();
 
@@ -60,6 +62,7 @@
 	style:transform={magnetOn ? `translate(${pull.current.x}px, ${pull.current.y}px)` : undefined}
 	onmousemove={follow}
 	onmouseleave={release}
+	{onclick}
 >
 	<span>{@render label()}</span>
 	<span class="fill" aria-hidden="true">{@render label()}</span>

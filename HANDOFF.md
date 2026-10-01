@@ -31,9 +31,9 @@ Fuku Ramen, Ingogostraat 14A, 1092 HZ Amsterdam (Oost). Open since April 2023.
 
 - Run by a Polish couple: chef **Jakub Karczewski** (ex De Kas, trained at Miyajima Ramen School in Osaka) and **Aleksandra** (desserts, pairings). **Write to them in English.**
 - Wednesday to Friday 18:00–23:00: six-course seasonal tasting menu with ramen as the main, €89, reservations only. Saturday 13:00–19:30: izakaya à la carte, limited walk-ins.
-- Current site: fukuramenamsterdam.com, a nearly empty Wix page with the tagline "Ramen redefined." and a Zenchef booking widget (€10 deposit per person).
+- Current site: fukuramenamsterdam.com, a nearly empty Wix page with the tagline "Ramen redefined." and a **Tebi** booking widget (checked 1 October 2026; it was Zenchef in the September research). The €10 deposit per person is from the Zenchef days and is **unverified** under Tebi.
 - Mail: hello@fukuramenamsterdam.com. Phone: +31 6 42 60 85 96, answered Wednesday to Saturday 11:00–18:00.
-- Their own accent colour is sage `#9D9E97` (passed to their booking widget). The demo uses it.
+- Their own accent colour is sage `#9D9E97` (what they passed to the old Zenchef widget). The demo uses it. Their Tebi widget and Wix theme colour now show `#9C9D96`; the token was left as is.
 
 The full analysis of their site and of eight competitors is in `docs/concurrentieonderzoek/`. Start with `00-overzicht.md` and `fuku.md`.
 
@@ -60,7 +60,7 @@ These came from his feedback. Do not undo them without asking.
 ## Open work
 
 1. **Video loops are Pexels stock.** Hero: "Authentic Japanese Ramen Bowl Close-Up" by Ali Alcántara (pexels.com/video/31387235). Saturday: Alay Lv (33400919). Visit: Taryn Elliott (9508945). They live in `static/video/`. Replace with Fuku's own footage, or with generated images or video if Jaymar asks for that. Photos in `src/lib/assets/photos/` are Fuku's own, taken from their site.
-2. **"Reserve a table" links to the live site.** In production the Zenchef widget should open in-page and load only on click.
+2. **Booking: Tebi in-page, on click (done; real widget unwatched).** Every Reserve opens Fuku's own Tebi widget; the Tebi script loads on the first click only. Without JavaScript, or if Tebi fails or stays silent for 8 s, Reserve goes to fukuramenamsterdam.com/reservations. Opening it from our buttons uses the message Tebi's own `#tebi-reservations` links send; if Tebi changes that, check `src/lib/state/reservations.svelte.ts`. Tested only against a mocked widget: `live.tebi.co` was blocked from the cloud session, so the real widget on our domain has not been seen. Check the €10 deposit and the waiting-list line in Visit with Fuku.
 3. **Phone number conflict.** Fuku's own JSON-LD says `+31611047801`; their visible contact page says `+31 6 42 60 85 96`. The demo uses the visible one. Ask Fuku.
 4. **Dutch version**: done. `/nl` with `hreflang`, canonical and `<html lang="nl">`; words in `src/lib/data/restaurant.nl.ts`. Read the Dutch once before showing it; new copy goes into both locale files.
 5. **The six courses are a sample structure**, labelled as such. The real menu changes with the season; Fuku has to supply it.

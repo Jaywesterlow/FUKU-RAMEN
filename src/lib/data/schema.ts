@@ -29,7 +29,7 @@ export function restaurantSchema(restaurant: Restaurant, page: Page) {
 					addressLocality: restaurant.address.city,
 					addressCountry: restaurant.address.country
 				},
-				acceptsReservations: restaurant.reserveUrl,
+				acceptsReservations: restaurant.reservations.url,
 				sameAs: [restaurant.instagram],
 				openingHoursSpecification: restaurant.hours.map((block) => ({
 					'@type': 'OpeningHoursSpecification',

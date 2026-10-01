@@ -3,6 +3,8 @@
 Bron: https://www.fukuramenamsterdam.com/ (Firecrawl rawHtml + markdown, live fetch `maxAge:0`, 2026-09-18).
 Alles hieronder is uit de geserveerde HTML/CSS/JS van de homepage; wat niet aantoonbaar was staat als "niet vastgesteld".
 
+> **Update 2026-10-01 (live fetch, Firecrawl `maxAge:0`, homepage en `/reservations`):** Fuku reserveert nu via **Tebi**, niet meer via Zenchef/Formitable. Geen spoor meer van Zenchef, Formitable, `zcft` of `b68cc129`. Wix custom code (body-end) laadt `<script src="https://live.tebi.co/ecom/widget-manager.js" data-widget-token="431923_26ad8730388e1eed93775c4571c4335e45d8a533b2ec9d21f8c5f573af38f30d" id="tebi">`; de widget-iframe toonde `https://live.tebi.co/ecom/widget/431923_d57b9f4c740c29a76d64c253e773200cb35c386a348f508874876abf312560e2`. Pil rechtsonder met "Reserve a table" en cadeaubonnen. Accentkleur in de Tebi-widget en Wix `theme-color`: **`#9C9D96`** (was `#9D9E97` in Zenchef). De **€10 deposit**, wachtlijst en voorwaardentekst hieronder komen uit de Zenchef-widget en zijn onder Tebi **niet geverifieerd**. De Zenchef-gegevens hieronder zijn historisch.
+
 ## 1. Identiteit
 
 - Naam: **Fuku Ramen** (`og:site_name`, ld+json `LocalBusiness`).
