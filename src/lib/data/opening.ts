@@ -24,7 +24,7 @@ export function openingHeadline(now: Date, hours: Hours[], words: OpeningWords):
 		const next = blockFor(nextDay, hours);
 		if (next) {
 			const prefix = today ? words.closedForToday : words.closedToday;
-			return `${prefix} · ${words.dayNames[nextDay]} ${words.from} ${next.opens}`;
+			return `${prefix}, ${words.dayNames[nextDay]} ${words.from} ${next.opens}`;
 		}
 	}
 
