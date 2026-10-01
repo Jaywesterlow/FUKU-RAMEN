@@ -69,10 +69,13 @@ GSAP alone sets the start state of a reveal. A CSS transform on the same element
 - `gsap`, `lenis`: the demo motion stack.
 - `@sveltejs/enhanced-img`: image pipeline.
 
+## Fonts
+
+Self-hosted from `static/fonts/`, no Google Fonts request. Bodoni Moda and Hanken Grotesk are variable latin subsets; Noto Serif JP (500) is subset to the kanji the site uses. Bodoni Moda italic and Hanken Grotesk are preloaded in `src/app.html`. All three are licensed under the SIL Open Font License 1.1.
+
 ## Still open
 
 - The three video loops are Pexels stock (sources in `docs/bewegingsconcept.md`). Replace with Fuku's own footage.
-- Fonts load from Google Fonts. Self-host before production.
 - "Reserve a table" links to the live site. In production the Zenchef widget should load in-page, on click.
 - Phone number: the research found `+31611047801` in Fuku's JSON-LD, the visible contact page says `+31 6 42 60 85 96`. The demo uses the visible one. Ask Fuku.
 - Dutch version (`/nl`) with `hreflang`.

@@ -1,3 +1,43 @@
+/* ── Fonts ── self-hosted, SIL Open Font License 1.1. Latin subsets; Noto Serif JP holds only the kanji the site uses. */
+@font-face {
+	font-family: 'Bodoni Moda';
+	font-style: normal;
+	font-weight: 400 500;
+	font-display: swap;
+	src: url('/fonts/bodoni-moda-latin.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'Bodoni Moda';
+	font-style: italic;
+	font-weight: 400 500;
+	font-display: swap;
+	src: url('/fonts/bodoni-moda-italic-latin.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'Hanken Grotesk';
+	font-style: normal;
+	font-weight: 300 500;
+	font-display: swap;
+	src: url('/fonts/hanken-grotesk-latin.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'Noto Serif JP';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('/fonts/noto-serif-jp-500-subset.woff2') format('woff2');
+	unicode-range: U+4E00, U+4E09, U+4E8C, U+4E94, U+516D, U+56DB, U+571F, U+591C, U+798F, U+8A2A;
+}
+
 /* ── Tokens ── */
 :root {
 	--paper: #f8f7f4;

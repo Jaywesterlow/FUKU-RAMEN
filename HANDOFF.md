@@ -54,17 +54,17 @@ These came from his feedback. Do not undo them without asking.
 - **Never put a CSS transform on an element GSAP also animates.** In an early version CSS set `translateY(110%)` and GSAP added `yPercent: 110` on top, so headings ended up stuck below their mask. GSAP alone sets the start state (`y: 0, yPercent: 110`).
 - **Motion timings come from Jaymar's animation library** (ids 11b, 12, 19, 06, 27c) and are not tuned in this repo. Durations and easings are in `src/lib/motion/attachments.ts` and in `docs/bewegingsconcept.md`.
 - **Motion was never watched by the previous session.** Its browser windows delivered no animation frames, so only the end states and the logic were tested. Jaymar judges timing and feel himself in a real browser. If he reports that something does not animate, believe him and reproduce it before theorising.
+- **Fonts are self-hosted** in `static/fonts/` (latin subsets, `@font-face` in `src/app.css`). Noto Serif JP holds only the kanji the site uses (一二三四五六土夜福訪). A new kanji falls back to a system font until the subset is regenerated: fetch the Google Fonts CSS with `&text=` set to all kanji and replace the file.
 - **Line endings are LF** (`.gitattributes`). Run `npm run format` before committing.
 
 ## Open work
 
 1. **Video loops are Pexels stock.** Hero: "Authentic Japanese Ramen Bowl Close-Up" by Ali Alcántara (pexels.com/video/31387235). Saturday: Alay Lv (33400919). Visit: Taryn Elliott (9508945). They live in `static/video/`. Replace with Fuku's own footage, or with generated images or video if Jaymar asks for that. Photos in `src/lib/assets/photos/` are Fuku's own, taken from their site.
-2. **Fonts load from Google Fonts.** Self-host before production (Bodoni Moda, Hanken Grotesk, Noto Serif JP).
-3. **"Reserve a table" links to the live site.** In production the Zenchef widget should open in-page and load only on click.
-4. **Phone number conflict.** Fuku's own JSON-LD says `+31611047801`; their visible contact page says `+31 6 42 60 85 96`. The demo uses the visible one. Ask Fuku.
-5. **Dutch version** at `/nl` with `hreflang`. No competitor does this well.
-6. **The six courses are a sample structure**, labelled as such. The real menu changes with the season; Fuku has to supply it.
-7. **A menu in HTML from the data object**, feeding `Menu` JSON-LD. Only `Restaurant` JSON-LD exists now.
+2. **"Reserve a table" links to the live site.** In production the Zenchef widget should open in-page and load only on click.
+3. **Phone number conflict.** Fuku's own JSON-LD says `+31611047801`; their visible contact page says `+31 6 42 60 85 96`. The demo uses the visible one. Ask Fuku.
+4. **Dutch version** at `/nl` with `hreflang`. No competitor does this well.
+5. **The six courses are a sample structure**, labelled as such. The real menu changes with the season; Fuku has to supply it.
+6. **A menu in HTML from the data object**, feeding `Menu` JSON-LD. Only `Restaurant` JSON-LD exists now.
 
 ## If images or video are needed
 
