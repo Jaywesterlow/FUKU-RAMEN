@@ -8,3 +8,4 @@ export { default as Saturday } from './components/Saturday.svelte';
 export { default as Strip } from './components/Strip.svelte';
 export { default as Visit } from './components/Visit.svelte';
 export { default as Footer } from './components/Footer.svelte';
+export { default as ReserveDialog } from './components/ReserveDialog.svelte';

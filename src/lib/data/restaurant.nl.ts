@@ -125,6 +125,16 @@ export const nl: Copy = {
 			waitlist:
 				'Volgeboekt? Via de wachtlijst in het reserveringssysteem krijg je een mail zodra er een tafel vrijkomt.'
 		},
-		footer: { reserve: 'Reserveer', top: 'Terug naar boven', credit: 'Conceptdemo, jwcreative.nl' }
+		footer: {
+			reserve: 'Reserveer',
+			top: 'Terug naar boven',
+			credit: 'Conceptdemo, jwcreative.nl'
+		},
+		demo: {
+			title: 'Dit is een conceptdemo.',
+			line: 'Op de echte site reserveer je hier, op deze pagina.',
+			link: 'Reserveer op Fuku’s eigen site',
+			close: 'Sluit'
+		}
 	}
 };
