@@ -1,96 +1,54 @@
-import { facts } from '$lib/data/restaurant';
-
-const { origin, url } = facts.reservations;
-
-/** How long the widget may take to say hello before Reserve falls back to the plain link. */
-const PATIENCE = 8000;
-
 /**
- * Tebi's booking widget, loaded on the first Reserve click and never before.
+ * What Reserve does in this demo: open a small "this is a concept demo" dialog, at once.
  *
- * `requested` flips on that click; the layout then renders Tebi's own snippet into the head.
- * Their manager script builds the widget iframe, which posts `appear` when it is ready.
- * From then on Reserve asks the widget to open, the same message Tebi's own links send.
- * If the script fails or the widget stays silent, Reserve follows the plain link instead.
+ * The demo must not take real bookings at Fuku, so Fuku's Tebi widget is not loaded here.
+ * Every Reserve link keeps Fuku's own /reservations page as its href, for visitors without
+ * JavaScript and for a new tab. Production would open Tebi in-page instead, preloaded so it
+ * opens without a wait; the ids for that are kept in `facts.reservations`.
  */
 class Reservations {
-	/** True from the first Reserve click: the layout renders the Tebi script. */
-	requested = $state(false);
-	/** True once the widget has said it is ready. */
-	ready = $state(false);
-	/** True while the widget is open. */
-	expanded = $state(false);
+	/** True while the demo dialog is open. */
+	isOpen = $state(false);
 
-	#widget: Window | null = null;
-	#pending = false;
-	#trigger: HTMLElement | null = null;
-	#timer: ReturnType<typeof setTimeout> | undefined;
+	#dialog: HTMLDialogElement | null = null;
+	#opener: HTMLElement | null = null;
 
-	/** Click handler for every Reserve link. Their href stays the plain link for no-JS. */
+	/** Attachment for the `<dialog>`: Reserve can open it from anywhere on the page. */
+	dialog = (node: HTMLDialogElement) => {
+		this.#dialog = node;
+		return () => {
+			if (this.#dialog === node) this.#dialog = null;
+		};
+	};
+
+	/** Click handler for every Reserve link: shows the dialog in the same frame, no network. */
 	open = (event: MouseEvent & { currentTarget: EventTarget & HTMLElement }) => {
 		// a new tab or window on purpose: let the browser follow the link
 		if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
 			return;
 		}
+		if (!this.#dialog) return;
 		event.preventDefault();
-		this.#trigger = event.currentTarget;
-
-		if (this.ready) {
-			this.#send('openReservationsWidget');
-			return;
-		}
-		this.#pending = true;
-		this.requested = true;
-		clearTimeout(this.#timer);
-		this.#timer = setTimeout(() => this.fail(), PATIENCE);
+		this.#opener = event.currentTarget;
+		if (!this.#dialog.open) this.#dialog.showModal();
+		this.isOpen = true;
 	};
 
-	/** The script did not load, or the widget never answered: take the visitor to the plain link. */
-	fail = () => {
-		clearTimeout(this.#timer);
-		if (!this.#pending) return;
-		this.#pending = false;
-		window.location.assign(url);
+	close = () => {
+		this.#dialog?.close();
 	};
 
-	/** Window `message` handler: only Tebi's own origin is listened to. */
-	receive = (event: MessageEvent) => {
-		if (event.origin !== origin || !event.source) return;
-		let type: unknown;
-		try {
-			const message = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-			type = message?.type;
-		} catch {
-			return;
-		}
-
-		if (type === 'appear') {
-			this.#widget = event.source as Window;
-			this.ready = true;
-			clearTimeout(this.#timer);
-			if (this.#pending) {
-				this.#pending = false;
-				this.#send('openReservationsWidget');
-			}
-		} else if (type === 'expand') {
-			this.expanded = true;
-			// keyboard users land in the widget, not behind it
-			this.#widget?.focus();
-		} else if (type === 'collapse') {
-			const wasOpen = this.expanded;
-			this.expanded = false;
-			if (wasOpen) this.#trigger?.focus();
-		}
+	/** The dialog's `close` event, whatever closed it (Esc, backdrop, button): focus goes back. */
+	closed = () => {
+		this.isOpen = false;
+		this.#opener?.focus();
+		this.#opener = null;
 	};
 
-	/** Window `keydown` handler: Esc closes the widget while focus is on our page. */
-	key = (event: KeyboardEvent) => {
-		if (event.key === 'Escape' && this.expanded) this.#send('close');
+	/** A click on the backdrop lands on the `<dialog>` itself, outside its inner panel. */
+	backdrop = (event: MouseEvent & { currentTarget: EventTarget & HTMLDialogElement }) => {
+		if (event.target === event.currentTarget) this.close();
 	};
-
-	#send(type: string) {
-		this.#widget?.postMessage(JSON.stringify({ type }), origin);
-	}
 }
 
 export const reservations = new Reservations();

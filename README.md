@@ -54,22 +54,22 @@ docs/                         motion concept, competitor research, the static de
 
 ## What Svelte does here
 
-| Tool                                                     | Where                        | Why                                                                                       |
-| -------------------------------------------------------- | ---------------------------- | ----------------------------------------------------------------------------------------- |
-| `{@attach}` attachments                                  | `motion/attachments.ts`      | Every reveal is set up and cleaned up with the element it moves                           |
-| `$state` / `$derived` in a class                         | `state/opening.svelte.ts`    | One clock; "Today 18:00 – 23:00" and the Today badge derive from it                       |
-| `$effect` with cleanup                                   | `+layout.svelte`             | Starts and stops the clock, Lenis and the ScrollTrigger refresh                           |
-| `prefersReducedMotion`                                   | attachments, videos, layout  | Reveals, smooth scroll and video loops switch off live with the visitor's setting         |
-| `scrollY`, `innerHeight` from `svelte/reactivity/window` | `Nav`, `Hero`                | Nav colour and the scroll cue are derived values, no scroll listener                      |
-| `MediaQuery` + `Tween`                                   | `Button`                     | Magnetic button only with a real cursor; 200 ms expo-out as in library 27c                |
-| `bind:currentTime`, `bind:duration`, `bind:paused`       | `SeamlessVideo`, `LoopVideo` | The hero loop crossfades between two copies; loops play only on screen                    |
-| Snippets                                                 | `Button`, `Eyebrow`, frames  | The button label renders twice (text and fill) from one snippet                           |
-| `transition:fade`, `{#key}` + `in:fade`                  | `Nav`, `Evening`             | Mobile menu and the course caption                                                        |
-| `<svelte:element>`                                       | `RevealHeading`              | One heading component for `h1` and `h2`                                                   |
-| `load` + `prerender` + `entries`                         | `+layout.ts`, `+page.ts`     | Content reaches components as props, per language; a CMS would touch one function         |
-| Optional param + matcher, `transformPageChunk`           | `[[lang=locale]]`, hooks     | `/` and `/nl` from one set of components; `<html lang>` right in the prerendered HTML     |
-| `<enhanced:img>`                                         | every photo                  | AVIF and WebP, `srcset`, intrinsic size                                                   |
-| `{#if}` in `<svelte:head>`, `<svelte:window>`            | `+layout.svelte`             | Tebi's booking script renders on the first Reserve click; its messages reach a rune class |
+| Tool                                                     | Where                                           | Why                                                                                              |
+| -------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `{@attach}` attachments                                  | `motion/attachments.ts`                         | Every reveal is set up and cleaned up with the element it moves                                  |
+| `$state` / `$derived` in a class                         | `state/opening.svelte.ts`                       | One clock; "Today 18:00 – 23:00" and the Today badge derive from it                              |
+| `$effect` with cleanup                                   | `+layout.svelte`                                | Starts and stops the clock, Lenis and the ScrollTrigger refresh                                  |
+| `prefersReducedMotion`                                   | attachments, videos, layout                     | Reveals, smooth scroll and video loops switch off live with the visitor's setting                |
+| `scrollY`, `innerHeight` from `svelte/reactivity/window` | `Nav`, `Hero`                                   | Nav colour and the scroll cue are derived values, no scroll listener                             |
+| `MediaQuery` + `Tween`                                   | `Button`                                        | Magnetic button only with a real cursor; 200 ms expo-out as in library 27c                       |
+| `bind:currentTime`, `bind:duration`, `bind:paused`       | `SeamlessVideo`, `LoopVideo`                    | The hero loop crossfades between two copies; loops play only on screen                           |
+| Snippets                                                 | `Button`, `Eyebrow`, frames                     | The button label renders twice (text and fill) from one snippet                                  |
+| `transition:fade`, `{#key}` + `in:fade`                  | `Nav`, `Evening`                                | Mobile menu and the course caption                                                               |
+| `<svelte:element>`                                       | `RevealHeading`                                 | One heading component for `h1` and `h2`                                                          |
+| `load` + `prerender` + `entries`                         | `+layout.ts`, `+page.ts`                        | Content reaches components as props, per language; a CMS would touch one function                |
+| Optional param + matcher, `transformPageChunk`           | `[[lang=locale]]`, hooks                        | `/` and `/nl` from one set of components; `<html lang>` right in the prerendered HTML            |
+| `<enhanced:img>`                                         | every photo                                     | AVIF and WebP, `srcset`, intrinsic size                                                          |
+| `<dialog>` + `{@attach}`, rune class                     | `ReserveDialog`, `state/reservations.svelte.ts` | Every Reserve opens the demo dialog in the same frame; Esc, backdrop and focus return are native |
 
 ## Motion
 
@@ -81,7 +81,6 @@ GSAP alone sets the start state of a reveal. A CSS transform on the same element
 
 - `gsap`, `lenis`: the demo motion stack.
 - `@sveltejs/enhanced-img`: image pipeline.
-- Not an npm dependency, but a third-party script: Tebi's `widget-manager.js` (Fuku's booking widget), loaded from `live.tebi.co` only after the first Reserve click. Ids in `src/lib/data/restaurant.ts`, state in `src/lib/state/reservations.svelte.ts`.
 
 ## Fonts
 
@@ -90,5 +89,5 @@ Self-hosted from `static/fonts/`, no Google Fonts request. Bodoni Moda and Hanke
 ## Still open
 
 - The three video loops are Pexels stock (sources in `docs/bewegingsconcept.md`). Replace with Fuku's own footage.
-- Booking runs on Tebi (Fuku switched from Zenchef). The widget loads on the first Reserve click; the real widget on this domain has only been tested against a mock. The €10 deposit and the waiting-list line are from the Zenchef days: confirm with Fuku.
+- Booking: the demo shows a "this is a concept demo" dialog on Reserve, with a link to Fuku's own /reservations page, so it can never take a real booking. Production should open Fuku's Tebi widget in-page and preload it (on hover or idle) so it opens at once; loaded on click it took 1–2 s and looked broken. Tebi ids are kept in `src/lib/data/restaurant.ts`. The €10 deposit and the waiting-list line are from the Zenchef days: confirm with Fuku.
 - Phone number: the research found `+31611047801` in Fuku's JSON-LD, the visible contact page says `+31 6 42 60 85 96`. The demo uses the visible one. Ask Fuku.
