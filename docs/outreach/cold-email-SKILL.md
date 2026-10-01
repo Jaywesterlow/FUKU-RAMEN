@@ -30,6 +30,28 @@ The mail has one job before anything else: pull the owner in. By the time they r
 Read [references/story-first.md](references/story-first.md) before writing: angles, contrasting examples, the draft that was rejected and why.
 </story_first>
 
+<connection>
+**Every mail also carries Jaymar's connection to this business.** Their story alone reads as research; a link between him and them makes it read as a person. This sits next to `<story_first>` and is just as binding.
+
+**What a connection is.** A true thread from Jaymar to something specific in their story: an interest, a taste, an experience, a place. It is about him and points at them. For example: "you went to Osaka to learn ramen at the source; I find Japanese culture and restaurants fascinating, and I wanted that Osaka feeling to come back on your site." Their detail first, then why it pulls at him, then what he made with it.
+
+**Where to find it, in this order:**
+1. What Jaymar said in this conversation.
+2. His JW AI Vault: `search_vault` for the prospect's niche, culture, place or style, plus notes about his interests and background.
+3. Notes saved with earlier drafts (for example `docs/outreach/` in the project repo).
+
+**Never invent one.** If nothing true turns up, write no connection sentence; a made-up interest or experience is worse than none. Say so plainly in the reply.
+
+**When nothing is found, ask, starting narrow.** Ask questions that use the research, so he has something to react to:
+- "Have you ever been to a place like this, or eaten this kind of food?"
+- "What drew you to their style: the photos, the food, the culture behind it?"
+- "Does anything in their story touch something you care about: [the place / the craft / the background]?"
+
+Only if those give nothing, ask the open question last: "Where do you see your own connection to them?" That one makes him think, which is why it comes last and never first.
+
+**Then build it.** When he answers, write the connection from his words, and suggest saving the fact to his vault so the next mail can find it without asking.
+</connection>
+
 <mode_detection>
 Before doing anything else, determine which mode you are in by checking what the user has provided.
 
@@ -231,6 +253,8 @@ Before presenting, gut-check:
 - Opening on what is wrong with their site
 - "Here is a flaw, here is a site": a fault followed by a link, with nothing of theirs in between
 - Claims of effort that are not true (weeks of study, a visit, a meal)
+- An invented connection: an interest, a trip or an experience of Jaymar's that he never mentioned
+- Opening the question round with "what connects you to this?" before trying the narrower questions
 - Reusing an opening, a sentence order or a phrase from an example or an earlier draft
 </anti_patterns>
 
@@ -301,6 +325,13 @@ This is a mandatory step between writing and draft delivery. AI-written cold ema
 </humanizer_pass>
 
 <draft_delivery>
+**Always explain the draft.** Every reply that delivers a draft ends with a short "Why this draft" note for Jaymar:
+- the way in and the order you picked, and why
+- the connection you used and where it came from (his words, which vault note), or that none was found and what you asked him
+- the one finding used as the gap, and what you left out
+- any promise in the mail that is his to keep (a day, "this week").
+Keep it to a few lines. He judges the draft by its reasons, so a draft without them is not finished.
+
 After producing the email body and subject line, **and after the humanizer pass above**, save the draft via the `email:create_draft` tool. Default recipient: `jay@jwcreative.nl`. The draft lands in the user's TransIP concepts/drafts folder ready for review.
 
 Required parameters for `email:create_draft`:
@@ -337,6 +368,8 @@ The email is ready to deliver when:
 - It carries the four things from `<story_first>`: their story, the gap, the thing made for them, no cost plus the call
 - It does not open on a fault, and it passes the invested test
 - Every claim about effort or time is true, or left out
+- It carries Jaymar's own connection to the business, from his words or his vault, or the reply says none was found and asks him the questions in `<connection>`
+- The reply explains why the draft is written the way it is
 - Opening, sentence order and phrasing differ from the examples and from every other draft in the run
 - The owner's name and language were checked, not assumed
 - For Mode A: exactly **one** finding from the audit appears, as the gap and not as the opener; body is ≤90 words and ≤5 sentences, subject is prefixed correctly by tier and ≤4 words after the prefix

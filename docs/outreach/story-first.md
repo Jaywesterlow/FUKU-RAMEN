@@ -161,3 +161,13 @@ The mail announces the call, so the user needs what he will dial. After saving t
 - The one detail from the mail he can open the call with.
 - Which older drafts to delete, when the draft tool cannot delete.
 </follow_up_call>
+
+<connection_lesson>
+Fuku Ramen, 1 October 2026. Two drafts ran into the same gap: both told Fuku's story, and nothing in them was Jaymar's.
+
+- **Rejected:** "You went to Osaka to learn ramen at the source…" It told only their story. Jaymar: "I need to create a connection between me and their business."
+- **Sent (good enough):** "I'm a web designer with a soft spot for how Japanese restaurants look and feel, and your photos have all of it…" It had his interest, but it skipped their detail.
+- **How Jaymar would have written it** (spoken, not final wording): "I saw you went to Osaka to learn ramen. I find Japanese culture and Japanese restaurants really interesting, and I wanted that to come forward more. I wanted the Osaka feeling you picked up there to come back on your site."
+
+The pattern: their specific detail, then his honest pull towards it, then the site as the place where the two meet. Do not reuse this wording; reuse the shape.
+</connection_lesson>
