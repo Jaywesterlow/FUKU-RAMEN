@@ -40,16 +40,23 @@ Read [references/story-first.md](references/story-first.md) before writing: angl
 2. His JW AI Vault: `search_vault` for the prospect's niche, culture, place or style, plus notes about his interests and background.
 3. Notes saved with earlier drafts (for example `docs/outreach/` in the project repo).
 
-**Never invent one.** If nothing true turns up, write no connection sentence; a made-up interest or experience is worse than none. Say so plainly in the reply.
+**Never invent one.**
 
-**When nothing is found, ask, starting narrow.** Ask questions that use the research, so he has something to react to:
-- "Have you ever been to a place like this, or eaten this kind of food?"
-- "What drew you to their style: the photos, the food, the culture behind it?"
-- "Does anything in their story touch something you care about: [the place / the craft / the background]?"
+**Before research or writing, ask how to handle questions.** Ask this once per run as a multiple-choice question, using the built-in question tool (`AskUserQuestion`):
+- a. Ask about the connection between Jaymar and the site(s).
+- b. Ask only when the vault has no connection for a site.
+- c. Ask nothing; fully automatic. A site without a connection gets a draft without a connection sentence, and the reply says so.
+In a run over several sites, questions for each site come with that site's name and link.
 
-Only if those give nothing, ask the open question last: "Where do you see your own connection to them?" That one makes him think, which is why it comes last and never first.
+**Questions come before the draft, never after it.** With a or b, do not write any draft for a site before its questions are answered. A draft written first and questions asked afterwards wastes his time, because the draft has to be rewritten.
 
-**Then build it.** When he answers, write the connection from his words, and suggest saving the fact to his vault so the next mail can find it without asking.
+**How to ask.**
+- One question at a time, through `AskUserQuestion`, as multiple choice: concrete options drawn from the research, plus "Other" for his own words. Wait for the answer, then decide the next question from it.
+- Start broad and personal ("Do you have anything to do with pilates?"), then narrow down on what he answers. Use the research to make the options concrete: the place, the craft, the style, the people.
+- The open question ("Where do you see your own connection to them?") comes last, and only when nothing else gave an answer.
+- Never put a list of open questions in a chat reply for him to answer by typing.
+
+**Then build it.** Write the connection from his answers, and suggest saving the facts to his vault so the next mail can find them without asking.
 </connection>
 
 <mode_detection>
@@ -255,6 +262,8 @@ Before presenting, gut-check:
 - Claims of effort that are not true (weeks of study, a visit, a meal)
 - An invented connection: an interest, a trip or an experience of Jaymar's that he never mentioned
 - Opening the question round with "what connects you to this?" before trying the narrower questions
+- Writing the draft first and asking the connection questions afterwards
+- A list of open questions in a chat reply instead of one multiple-choice question at a time
 - Reusing an opening, a sentence order or a phrase from an example or an earlier draft
 </anti_patterns>
 
