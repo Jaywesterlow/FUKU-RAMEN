@@ -1,20 +1,20 @@
 <script lang="ts">
 	import { photos } from '$lib/assets/photos';
-	import type { Way } from '$lib/data/restaurant';
+	import type { UI, Way } from '$lib/data/restaurant';
 	import Arrow from './Arrow.svelte';
 	import Eyebrow from './Eyebrow.svelte';
 	import RevealFrame from './RevealFrame.svelte';
 	import RevealHeading from './RevealHeading.svelte';
 
-	type Props = { ways: Way[] };
-	let { ways }: Props = $props();
+	type Props = { ways: Way[]; text: UI['ways'] };
+	let { ways, text }: Props = $props();
 </script>
 
 <section class="ways" id="ways">
 	<div class="wrap">
 		<header>
-			<Eyebrow kanji="二">Two ways to eat here</Eyebrow>
-			<RevealHeading lines={['An evening, or a Saturday.']} />
+			<Eyebrow kanji="二">{text.eyebrow}</Eyebrow>
+			<RevealHeading lines={text.lines} />
 		</header>
 
 		<div class="grid">

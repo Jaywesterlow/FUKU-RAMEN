@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { UI } from '$lib/data/restaurant';
 	import { fadeUp } from '$lib/motion/attachments';
 	import Button from './Button.svelte';
 	import Eyebrow from './Eyebrow.svelte';
@@ -6,8 +7,8 @@
 	import RevealFrame from './RevealFrame.svelte';
 	import RevealHeading from './RevealHeading.svelte';
 
-	type Props = { facts: { term: string; detail: string }[] };
-	let { facts }: Props = $props();
+	type Props = { facts: { term: string; detail: string }[]; text: UI['saturday'] };
+	let { facts, text }: Props = $props();
 </script>
 
 <section class="saturday" id="saturday">
@@ -16,17 +17,14 @@
 			<LoopVideo
 				src="/video/bowl-portrait.mp4"
 				poster="/video/saturday-poster.jpg"
-				label="Noodles lifted from a bowl of ramen"
+				label={text.video}
 			/>
 		</RevealFrame>
 
 		<div class="text">
-			<Eyebrow kanji="土">Saturday · 13:00 – 19:30</Eyebrow>
-			<RevealHeading lines={['The izakaya.']} />
-			<p class="lede" {@attach fadeUp()}>
-				À la carte from one in the afternoon. A ramen special that changes every week, plates to
-				share, sake.
-			</p>
+			<Eyebrow kanji="土">{text.eyebrow}</Eyebrow>
+			<RevealHeading lines={text.lines} />
+			<p class="lede" {@attach fadeUp()}>{text.lede}</p>
 			<dl {@attach fadeUp()}>
 				{#each facts as fact (fact.term)}
 					<div>
@@ -35,7 +33,7 @@
 					</div>
 				{/each}
 			</dl>
-			<div><Button href="#visit">Reserve a Saturday</Button></div>
+			<div><Button href="#visit">{text.reserve}</Button></div>
 		</div>
 	</div>
 </section>

@@ -62,7 +62,7 @@ These came from his feedback. Do not undo them without asking.
 2. **Fonts load from Google Fonts.** Self-host before production (Bodoni Moda, Hanken Grotesk, Noto Serif JP).
 3. **"Reserve a table" links to the live site.** In production the Zenchef widget should open in-page and load only on click.
 4. **Phone number conflict.** Fuku's own JSON-LD says `+31611047801`; their visible contact page says `+31 6 42 60 85 96`. The demo uses the visible one. Ask Fuku.
-5. **Dutch version** at `/nl` with `hreflang`. No competitor does this well.
+5. **Dutch version**: done. `/nl` with `hreflang`, canonical and `<html lang="nl">`; words in `src/lib/data/restaurant.nl.ts`. Read the Dutch once before showing it; new copy goes into both locale files.
 6. **The six courses are a sample structure**, labelled as such. The real menu changes with the season; Fuku has to supply it.
 7. **A menu in HTML from the data object**, feeding `Menu` JSON-LD. Only `Restaurant` JSON-LD exists now.
 
