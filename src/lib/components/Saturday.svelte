@@ -56,23 +56,24 @@
 	}
 	.text {
 		display: grid;
-		gap: 1.6rem;
+		gap: var(--space-5);
 		max-width: 32rem;
 	}
 	dl {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: 1.2rem 1.6rem;
+		gap: var(--space-4) var(--space-5);
 		border-top: 1px solid var(--line);
-		padding-top: 1.4rem;
-		font-size: 0.92rem;
+		padding-top: var(--space-5);
+		font-size: var(--text-small);
 	}
 	dt {
-		font-size: 0.66rem;
-		letter-spacing: 0.18em;
+		font-size: var(--text-label);
+		font-weight: var(--label-weight);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
 		color: var(--ink-2);
-		margin-bottom: 0.3rem;
+		margin-bottom: var(--space-1);
 	}
 	@media (max-width: 840px) {
 		.grid {

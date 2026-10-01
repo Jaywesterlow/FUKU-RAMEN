@@ -36,12 +36,12 @@
 	<div class="wrap bar rise d4">
 		<ul>
 			<li>
-				<a class="ul" href={restaurant.address.maps} target="_blank" rel="noopener">
+				<a class="ul tap" href={restaurant.address.maps} target="_blank" rel="noopener">
 					{restaurant.address.street}
 				</a>
 			</li>
 			<li class="open">{opening.headline(words)}</li>
-			<li><a class="ul numeric" href={restaurant.phone.href}>{restaurant.phone.display}</a></li>
+			<li><a class="ul tap numeric" href={restaurant.phone.href}>{restaurant.phone.display}</a></li>
 		</ul>
 		<a class={['cue', { gone: scrolled }]} href="#story" aria-label={text.cueLabel}>
 			<span>{text.cue}</span>
@@ -76,12 +76,17 @@
 		content: '';
 		position: absolute;
 		inset: 0;
-		background: linear-gradient(
-			180deg,
-			rgb(0 0 0 / 0.32),
-			rgb(0 0 0 / 0.06) 40%,
-			rgb(0 0 0 / 0.66)
-		);
+		/* C42/I23: an eased scrim behind the text block in the bottom-left corner, over the top-to-bottom fade */
+		background:
+			radial-gradient(
+				75% 95% at 0% 100%,
+				rgb(0 0 0 / 0.55),
+				rgb(0 0 0 / 0.45) 50%,
+				rgb(0 0 0 / 0.35) 68%,
+				rgb(0 0 0 / 0.15) 85%,
+				transparent
+			),
+			linear-gradient(180deg, rgb(0 0 0 / 0.32), rgb(0 0 0 / 0.06) 40%, rgb(0 0 0 / 0.66));
 	}
 	.inner {
 		position: relative;
@@ -89,7 +94,7 @@
 		width: 100%;
 		align-self: end;
 		display: grid;
-		gap: 1.4rem;
+		gap: var(--space-5);
 		padding-bottom: clamp(28px, 5vh, 56px);
 	}
 	.lede {
@@ -98,26 +103,27 @@
 	.cta {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1.2rem 2rem;
+		gap: var(--space-4) var(--space-6);
 		align-items: center;
-		margin-top: 0.4rem;
+		margin-top: var(--space-2);
 	}
 	.more {
 		position: relative;
 		display: inline-flex;
 		align-items: center;
-		gap: 0.5em;
-		font-size: 0.78rem;
-		font-weight: 500;
-		letter-spacing: 0.14em;
+		gap: var(--space-2);
+		min-height: var(--tap);
+		font-size: var(--text-label);
+		font-weight: var(--label-weight);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
-		padding-bottom: 0.35em;
 	}
+	/* the line sits 0.35em under the text, wherever the text sits in the --tap high box */
 	.more::after {
 		content: '';
 		position: absolute;
 		left: 0;
-		bottom: 0;
+		bottom: calc(50% - 0.5lh - 0.35em);
 		width: 100%;
 		height: 1px;
 		background: currentColor;
@@ -139,23 +145,23 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		gap: 1.5rem;
-		padding-bottom: calc(22px + env(safe-area-inset-bottom, 0px));
-		font-size: 0.72rem;
-		font-weight: 500;
-		letter-spacing: 0.14em;
+		gap: var(--space-5);
+		padding-bottom: calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
+		font-size: var(--text-label);
+		font-weight: var(--label-weight);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
 		color: rgb(255 255 255 / 0.85);
 	}
 	.bar ul {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.6em 1.6em;
+		gap: var(--space-2) var(--space-4);
 	}
 	.bar li {
 		display: flex;
 		align-items: center;
-		gap: 0.6em;
+		gap: var(--space-2);
 	}
 	.bar li + li::before {
 		content: '';
@@ -228,11 +234,11 @@
 		.bar {
 			flex-direction: column;
 			align-items: flex-start;
-			gap: 0.8rem;
+			gap: var(--space-3);
 		}
 		.bar ul {
 			flex-direction: column;
-			gap: 0.5em;
+			gap: var(--space-1);
 		}
 		.bar li + li::before,
 		.cue {

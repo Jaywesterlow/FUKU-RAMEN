@@ -33,7 +33,7 @@
 							{block.label}
 							{#if opening.isToday(block.days)}<span class="today">{text.today}</span>{/if}
 						</b>
-						<span class="numeric">{block.opens} – {block.closes}</span> · {block.note}
+						<span class="numeric">{block.opens} – {block.closes}</span>, {block.note}
 					</p>
 				{/each}
 				<p><b>{restaurant.closedLabel}</b>{text.closed}</p>
@@ -49,7 +49,7 @@
 					{restaurant.address.city}
 				</a>
 			</p>
-			<p>
+			<p class="contact">
 				<a class="ul" href="mailto:{restaurant.email}">{restaurant.email}</a><br />
 				<a class="ul numeric" href={restaurant.phone.href}>{restaurant.phone.display}</a><br />
 				<span class="small">{restaurant.phone.hours}</span>
@@ -109,7 +109,7 @@
 		width: 100%;
 		padding-block: 12vh 7vh;
 		display: grid;
-		gap: 1rem;
+		gap: var(--space-5);
 	}
 
 	.cols {
@@ -120,17 +120,17 @@
 	}
 	.col {
 		display: grid;
-		gap: 0.9rem;
+		gap: var(--space-4);
 		align-content: start;
 		border-top: 1px solid var(--ink);
-		padding-top: 1.2rem;
-		font-size: 0.98rem;
+		padding-top: var(--space-4);
+		font-size: var(--text-body);
 	}
 	.col h3 {
 		font-family: var(--font-body);
-		font-weight: 500;
-		font-size: 0.7rem;
-		letter-spacing: 0.16em;
+		font-size: var(--text-label);
+		font-weight: var(--label-weight);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
 		color: var(--ink-2);
 	}
@@ -139,11 +139,11 @@
 	}
 	.col ul {
 		display: grid;
-		gap: 0.55rem;
+		gap: var(--space-2);
 	}
 	.col li {
 		position: relative;
-		padding-left: 1.1em;
+		padding-left: var(--space-4);
 	}
 	.col li::before {
 		content: '';
@@ -157,16 +157,17 @@
 	}
 	.hours {
 		display: grid;
-		gap: 0.8rem;
+		gap: var(--space-3);
 	}
 	.hours b {
 		display: block;
 		font-weight: 500;
 	}
 	.today {
-		margin-left: 0.5em;
-		font-size: 0.8rem;
-		letter-spacing: 0.06em;
+		margin-left: var(--space-2);
+		font-size: var(--text-label);
+		font-weight: var(--label-weight);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
 		color: var(--sage-deep);
 	}
@@ -175,13 +176,20 @@
 		display: grid;
 		justify-items: center;
 		text-align: center;
-		gap: 1.2rem;
+		gap: var(--space-4);
 		padding-block: clamp(64px, 9vw, 120px);
 	}
 
 	@media (max-width: 840px) {
 		.cols {
 			grid-template-columns: 1fr;
+		}
+		/* mail and phone: one --tap high line each on a phone */
+		.contact a {
+			display: inline-flex;
+			align-items: center;
+			min-height: var(--tap);
+			--ul-offset: calc(50% - 0.5lh - 0.15em);
 		}
 	}
 </style>

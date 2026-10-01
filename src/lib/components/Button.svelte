@@ -76,8 +76,9 @@
 		overflow: hidden;
 		border-radius: 999px;
 		border: 1px solid currentColor;
-		font: 500 0.74rem/1 var(--font-body);
-		letter-spacing: 0.16em;
+		min-height: var(--tap);
+		font: var(--label-weight) var(--text-label) / 1 var(--font-body);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
 		will-change: transform;
 		transition: scale 0.2s var(--ease);
@@ -91,18 +92,18 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		gap: 0.7em;
-		padding: 1em 1.7em;
+		gap: var(--space-2);
+		padding: var(--space-2) var(--space-5);
 		white-space: nowrap;
 	}
 	.sm > span {
-		padding: 0.8em 1.3em;
+		padding-inline: var(--space-4);
 	}
 	.lg {
-		font-size: 0.82rem;
+		min-height: 3rem;
 	}
 	.lg > span {
-		padding: 1.25em 2.2em;
+		padding-inline: var(--space-6);
 	}
 
 	/* one direction only: in from the bottom on hover, out through the top on leave */

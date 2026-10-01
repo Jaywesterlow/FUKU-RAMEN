@@ -49,7 +49,9 @@
 				</div>
 				<div class="caption">
 					{#key active.id}
-						<span in:fade={{ duration: 400 }}>{number(active.id)} · {active.title}</span>
+						<span class="now" in:fade={{ duration: 400 }}
+							><span class="numeric">{number(active.id)}</span>{active.title}</span
+						>
 					{/key}
 					<span>{text.sample}</span>
 				</div>
@@ -91,12 +93,12 @@
 	}
 	header {
 		display: grid;
-		gap: 1.4rem;
+		gap: var(--space-5);
 		max-width: 56rem;
 		margin-bottom: clamp(40px, 6vw, 88px);
 	}
 	.note {
-		font-size: 0.9rem;
+		font-size: var(--text-small);
 		color: var(--muted-d);
 	}
 
@@ -114,7 +116,7 @@
 		height: 100svh;
 		display: grid;
 		align-content: center;
-		gap: 0.9rem;
+		gap: var(--space-4);
 	}
 	.frame {
 		position: relative;
@@ -144,10 +146,16 @@
 	.caption {
 		display: flex;
 		justify-content: space-between;
-		font-size: 0.7rem;
-		letter-spacing: 0.14em;
+		font-size: var(--text-label);
+		font-weight: var(--label-weight);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
 		color: var(--muted-d);
+	}
+
+	.now {
+		display: inline-flex;
+		gap: var(--space-3);
 	}
 
 	ol {
@@ -157,7 +165,7 @@
 	.course {
 		display: grid;
 		grid-template-columns: auto 1fr;
-		gap: 1rem 2rem;
+		gap: var(--space-4) var(--space-6);
 		align-items: start;
 		padding-block: clamp(32px, 5vh, 56px);
 		border-top: 1px solid var(--line-d);
@@ -186,12 +194,13 @@
 	}
 	.body {
 		display: grid;
-		gap: 0.6rem;
+		gap: var(--space-2);
 		max-width: 26em;
 	}
 	.n {
-		font-size: 0.68rem;
-		letter-spacing: 0.18em;
+		font-size: var(--text-label);
+		font-weight: var(--label-weight);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
 		color: var(--muted-d);
 	}
@@ -212,7 +221,7 @@
 		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: center;
-		gap: 1.6rem 3rem;
+		gap: var(--space-5) var(--space-7);
 		margin-top: clamp(40px, 6vw, 88px);
 	}
 	.price {
@@ -222,9 +231,9 @@
 		line-height: 1;
 	}
 	.price small {
-		font: 300 0.92rem/1 var(--font-body);
+		font: 300 var(--text-body) / 1 var(--font-body);
 		color: var(--muted-d);
-		margin-left: 0.8rem;
+		margin-left: var(--space-3);
 		letter-spacing: 0.04em;
 	}
 
@@ -238,7 +247,7 @@
 			height: auto;
 			z-index: 1;
 			background: var(--lacquer);
-			padding-bottom: 0.6rem;
+			padding-bottom: var(--space-2);
 			align-content: start;
 		}
 		.frame {

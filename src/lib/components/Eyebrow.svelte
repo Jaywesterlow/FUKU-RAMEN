@@ -15,17 +15,19 @@
 	.eyebrow {
 		display: flex;
 		align-items: center;
-		gap: 0.8em;
-		font-size: 0.72rem;
-		font-weight: 500;
-		letter-spacing: 0.18em;
+		gap: var(--space-2);
+		/* T21: closer to its heading than the heading is to what follows; the parent's gap minus this */
+		margin-bottom: calc(var(--space-2) * -1);
+		font-size: var(--text-label);
+		font-weight: var(--label-weight);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
 		color: var(--eyebrow, var(--ink-2));
 	}
 	.jp {
 		font-weight: 500;
 		letter-spacing: 0;
-		font-size: 1.05rem;
+		font-size: var(--text-body);
 		color: var(--eyebrow-mark, var(--sage-deep));
 	}
 </style>

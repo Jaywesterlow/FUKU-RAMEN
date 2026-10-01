@@ -12,6 +12,7 @@
 <div class="lang" role="group" aria-label={label}>
 	{#each locales as to (to)}
 		<a
+			class="tap"
 			href={href(to)}
 			hreflang={to}
 			lang={to}
@@ -27,14 +28,13 @@
 <style>
 	.lang {
 		display: flex;
-		gap: 0.7em;
-		font-size: 0.74rem;
-		font-weight: 500;
-		letter-spacing: 0.16em;
+		gap: var(--space-2);
+		font-size: var(--text-label);
+		font-weight: var(--label-weight);
+		letter-spacing: var(--label-tracking);
 		text-transform: uppercase;
 	}
 	a {
-		padding-block: 0.3em;
 		opacity: 0.5;
 		transition: opacity 0.35s;
 	}
