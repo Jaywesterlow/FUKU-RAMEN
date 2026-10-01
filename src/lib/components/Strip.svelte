@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { photos } from '$lib/assets/photos';
-	import type { StripPhoto } from '$lib/data/restaurant';
+	import type { StripPhoto, UI } from '$lib/data/restaurant';
 
 	/** 06 — endless strip. The loop is CSS; the second set is rendered, not cloned. */
-	type Props = { items: StripPhoto[] };
-	let { items }: Props = $props();
+	type Props = { items: StripPhoto[]; text: UI['strip'] };
+	let { items, text }: Props = $props();
 
 	const sets = [
 		{ id: 'first', copy: false },
@@ -12,7 +12,7 @@
 	];
 </script>
 
-<section class="strip" aria-label="Photos of Fuku Ramen">
+<section class="strip" aria-label={text.label}>
 	<div class="scroller">
 		<div class="track">
 			{#each sets as set (set.id)}

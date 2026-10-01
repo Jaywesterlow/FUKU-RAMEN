@@ -62,7 +62,7 @@ These came from his feedback. Do not undo them without asking.
 1. **Video loops are Pexels stock.** Hero: "Authentic Japanese Ramen Bowl Close-Up" by Ali Alcántara (pexels.com/video/31387235). Saturday: Alay Lv (33400919). Visit: Taryn Elliott (9508945). They live in `static/video/`. Replace with Fuku's own footage, or with generated images or video if Jaymar asks for that. Photos in `src/lib/assets/photos/` are Fuku's own, taken from their site.
 2. **"Reserve a table" links to the live site.** In production the Zenchef widget should open in-page and load only on click.
 3. **Phone number conflict.** Fuku's own JSON-LD says `+31611047801`; their visible contact page says `+31 6 42 60 85 96`. The demo uses the visible one. Ask Fuku.
-4. **Dutch version** at `/nl` with `hreflang`. No competitor does this well.
+4. **Dutch version**: done. `/nl` with `hreflang`, canonical and `<html lang="nl">`; words in `src/lib/data/restaurant.nl.ts`. Read the Dutch once before showing it; new copy goes into both locale files.
 5. **The six courses are a sample structure**, labelled as such. The real menu changes with the season; Fuku has to supply it.
 6. **A menu in HTML from the data object**, feeding `Menu` JSON-LD. Only `Restaurant` JSON-LD exists now.
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { photos } from '$lib/assets/photos';
-	import type { Course } from '$lib/data/restaurant';
+	import type { Course, UI } from '$lib/data/restaurant';
 	import { fadeUp, whenCentred } from '$lib/motion/attachments';
 	import Button from './Button.svelte';
 	import Eyebrow from './Eyebrow.svelte';
@@ -10,8 +10,9 @@
 	type Props = {
 		courses: Course[];
 		evening: { price: string; priceNote: string; note: string };
+		text: UI['evening'];
 	};
-	let { courses, evening }: Props = $props();
+	let { courses, evening, text }: Props = $props();
 
 	/** the course in the middle of the screen; the photo and the caption follow it */
 	let activeId = $state(1);
@@ -23,8 +24,8 @@
 <section class="evening" id="evening">
 	<div class="wrap">
 		<header>
-			<Eyebrow kanji="夜">The evening · Wednesday to Friday</Eyebrow>
-			<RevealHeading lines={['Six courses.', 'One bowl at the end.']} />
+			<Eyebrow kanji="夜">{text.eyebrow}</Eyebrow>
+			<RevealHeading lines={text.lines} />
 			<p class="note" {@attach fadeUp()}>{evening.note}</p>
 		</header>
 
@@ -47,7 +48,7 @@
 					{#key active.id}
 						<span in:fade={{ duration: 400 }}>{number(active.id)} · {active.title}</span>
 					{/key}
-					<span>Sample evening</span>
+					<span>{text.sample}</span>
 				</div>
 			</div>
 
@@ -59,7 +60,7 @@
 					>
 						<span class="jp" aria-hidden="true">{course.kanji}</span>
 						<div class="body">
-							<p class="n">Course {number(course.id)}</p>
+							<p class="n">{text.course} {number(course.id)}</p>
 							<h3>{course.title}</h3>
 							<!-- only the active course speaks: text through the scroll, nothing to click -->
 							<p class="say">{course.line}</p>
@@ -71,7 +72,7 @@
 
 		<footer>
 			<p class="price">{evening.price} <small>{evening.priceNote}</small></p>
-			<Button href="#visit" variant="dark">Reserve the evening</Button>
+			<Button href="#visit" variant="dark">{text.reserve}</Button>
 		</footer>
 	</div>
 </section>

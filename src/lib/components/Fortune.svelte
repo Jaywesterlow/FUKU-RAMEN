@@ -1,25 +1,22 @@
 <script lang="ts">
 	import { photos } from '$lib/assets/photos';
-	import type { Restaurant } from '$lib/data/restaurant';
+	import type { Restaurant, UI } from '$lib/data/restaurant';
 	import { fadeUp } from '$lib/motion/attachments';
 	import Eyebrow from './Eyebrow.svelte';
 	import RevealFrame from './RevealFrame.svelte';
 	import RevealHeading from './RevealHeading.svelte';
 
-	type Props = { restaurant: Restaurant };
-	let { restaurant }: Props = $props();
+	type Props = { restaurant: Restaurant; text: UI['fortune'] };
+	let { restaurant, text }: Props = $props();
 </script>
 
 <section class="fortune" id="story">
 	<div class="wrap grid">
-		<aside class="vert" aria-hidden="true"><span class="jp">福</span>fuku · fortune</aside>
+		<aside class="vert" aria-hidden="true"><span class="jp">福</span>{text.vertical}</aside>
 		<div class="text">
-			<Eyebrow kanji="福">Fortune</Eyebrow>
-			<RevealHeading lines={['Fuku means fortune.', 'Here it comes in a bowl.']} />
-			<p class="lede" {@attach fadeUp()}>
-				House-made ramen, local ingredients, sake. A seasonal tasting menu through the week, the
-				izakaya on Saturday.
-			</p>
+			<Eyebrow kanji="福">{text.eyebrow}</Eyebrow>
+			<RevealHeading lines={text.lines} />
+			<p class="lede" {@attach fadeUp()}>{text.lede}</p>
 		</div>
 	</div>
 
@@ -28,12 +25,12 @@
 			<RevealFrame ratio="16 / 9" ratioNarrow="4 / 5" maxHeight="78vh">
 				<enhanced:img
 					src={photos.p05}
-					alt="The chef at the counter, preparing a course"
+					alt={text.alt}
 					sizes="(min-width: 1280px) 1136px, 90vw"
 					loading="lazy"
 				/>
 			</RevealFrame>
-			<figcaption><span>The counter</span><span>{restaurant.address.street}</span></figcaption>
+			<figcaption><span>{text.caption}</span><span>{restaurant.address.street}</span></figcaption>
 		</figure>
 	</div>
 </section>

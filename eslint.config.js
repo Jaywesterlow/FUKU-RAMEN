@@ -34,8 +34,8 @@ export default defineConfig(
 		}
 	},
 	{
-		// One page: every href is a #fragment, tel:, mailto: or an external URL from the data
-		// object. None of them is a route, so there is nothing for resolve() to resolve.
+		// One page in two languages: every href is a #fragment, tel:, mailto: or an external URL
+		// from the data object. The only routes, `/` and `/nl`, already go through resolve().
 		rules: { 'svelte/no-navigation-without-resolve': 'off' }
 	}
 );
