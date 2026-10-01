@@ -116,6 +116,12 @@ export const en: Copy = {
 			waitlist:
 				'Fully booked? The waiting list in the booking system emails you when a table frees up.'
 		},
-		footer: { reserve: 'Reserve', top: 'Back to top', credit: 'Concept demo · jwcreative.nl' }
+		footer: { reserve: 'Reserve', top: 'Back to top', credit: 'Concept demo · jwcreative.nl' },
+		demo: {
+			title: 'This is a concept demo.',
+			line: 'On the real site, booking would open right here, on this page.',
+			link: 'Book on Fuku’s own site',
+			close: 'Close'
+		}
 	}
 };

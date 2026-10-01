@@ -3,13 +3,12 @@
 	import '../../app.css';
 
 	import { prefersReducedMotion } from 'svelte/motion';
-	import { Footer, Nav } from '$lib';
+	import { Footer, Nav, ReserveDialog } from '$lib';
 	import favicon from '$lib/assets/favicon.svg';
 	import { locales, site } from '$lib/data/restaurant';
 	import { restaurantSchema } from '$lib/data/schema';
 	import { refreshWhenSettled, startSmoothScroll } from '$lib/motion/scroll';
 	import { opening } from '$lib/state/opening.svelte';
-	import { reservations } from '$lib/state/reservations.svelte';
 
 	let { data, children } = $props();
 
@@ -45,8 +44,6 @@
 	$effect(() => refreshWhenSettled());
 </script>
 
-<svelte:window onmessage={reservations.receive} onkeydown={reservations.key} />
-
 <svelte:head>
 	<title>{title}</title>
 	<meta name="description" content={data.restaurant.description} />
@@ -58,15 +55,6 @@
 	<link rel="icon" href={favicon} />
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- our own data, serialised as JSON -->
 	{@html schemaTag}
-	<!-- Tebi's own snippet, as on Fuku's site, rendered only after the first Reserve click -->
-	{#if reservations.requested}
-		<script
-			src={data.restaurant.reservations.script}
-			id="tebi"
-			data-widget-token={data.restaurant.reservations.widgetToken}
-			onerror={reservations.fail}
-		></script>
-	{/if}
 </svelte:head>
 
 <Nav restaurant={data.restaurant} links={data.navLinks} text={data.ui.nav} locale={data.locale} />
@@ -76,3 +64,5 @@
 </main>
 
 <Footer restaurant={data.restaurant} text={data.ui.footer} locale={data.locale} />
+
+<ReserveDialog text={data.ui.demo} href={data.restaurant.reservations.url} />

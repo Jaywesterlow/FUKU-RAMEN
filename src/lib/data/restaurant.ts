@@ -41,9 +41,11 @@ export const facts = {
 	url: 'https://www.fukuramenamsterdam.com/',
 	/**
 	 * Booking runs on Tebi (checked on fukuramenamsterdam.com, 1 October 2026; it was Zenchef before).
-	 * The snippet below is the one Fuku's own site loads. Tebi's manager script turns the token
-	 * into the widget iframe; `widgetUrl` is what that iframe showed on their site, for reference.
-	 * `url` is the plain link: without JavaScript, or if the widget fails, Reserve goes there.
+	 * `url` is Fuku's own reservations page: every Reserve link points there (no JavaScript, new tab)
+	 * and the demo dialog links to it.
+	 * For production: the demo does not load Tebi, so it cannot take real bookings. The ids below are
+	 * the snippet Fuku's own site loads (`script` + `widgetToken`; `widgetUrl` is what its iframe
+	 * showed), kept so the real widget can come back in-page, preloaded so it opens at once.
 	 */
 	reservations: {
 		provider: 'Tebi',
@@ -189,6 +191,7 @@ export type Copy = {
 			waitlist: string;
 		};
 		footer: { reserve: string; top: string; credit: string };
+		demo: { title: string; line: string; link: string; close: string };
 	};
 };
 
