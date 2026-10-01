@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reservations } from '$lib/state/reservations.svelte';
 	import { fadeUp } from '$lib/motion/attachments';
 	import Button from './Button.svelte';
 	import Eyebrow from './Eyebrow.svelte';
@@ -6,8 +7,12 @@
 	import RevealFrame from './RevealFrame.svelte';
 	import RevealHeading from './RevealHeading.svelte';
 
-	type Props = { facts: { term: string; detail: string }[] };
-	let { facts }: Props = $props();
+	type Props = {
+		facts: { term: string; detail: string }[];
+		/** the plain booking link, for visitors without JavaScript */
+		reserveUrl: string;
+	};
+	let { facts, reserveUrl }: Props = $props();
 </script>
 
 <section class="saturday" id="saturday">
@@ -35,7 +40,7 @@
 					</div>
 				{/each}
 			</dl>
-			<div><Button href="#visit">Reserve a Saturday</Button></div>
+			<div><Button href={reserveUrl} onclick={reservations.open}>Reserve a Saturday</Button></div>
 		</div>
 	</div>
 </section>

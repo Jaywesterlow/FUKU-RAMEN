@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reservations } from '$lib/state/reservations.svelte';
 	import logo from '$lib/assets/logo.png?enhanced';
 	import type { Restaurant } from '$lib/data/restaurant';
 
@@ -23,7 +24,7 @@
 
 		<div class="links">
 			<a class="ul" href={restaurant.instagram} target="_blank" rel="noopener">Instagram</a>
-			<a class="ul" href="#visit">Reserve</a>
+			<a class="ul" href={restaurant.reservations.url} onclick={reservations.open}>Reserve</a>
 			<a class="ul" href="#top">Back to top</a>
 		</div>
 

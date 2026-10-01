@@ -11,3 +11,6 @@ bun.lockb
 src/app.d.ts
 src/app.html
 src/lib/assets/
+
+# Claude Code: local settings and worktrees (other checkouts of this repo)
+/.claude/

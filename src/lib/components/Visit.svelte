@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reservations } from '$lib/state/reservations.svelte';
 	import type { Restaurant } from '$lib/data/restaurant';
 	import { fadeUp } from '$lib/motion/attachments';
 	import { opening } from '$lib/state/opening.svelte';
@@ -66,7 +67,9 @@
 	</div>
 
 	<div class="wrap reserve">
-		<Button href={restaurant.reserveUrl} size="lg" external magnetic>Reserve a table</Button>
+		<Button href={restaurant.reservations.url} onclick={reservations.open} size="lg" magnetic
+			>Reserve a table</Button
+		>
 		<p class="small">
 			Fully booked? The waiting list in the booking system emails you when a table frees up.
 		</p>

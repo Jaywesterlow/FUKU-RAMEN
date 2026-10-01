@@ -23,7 +23,21 @@ export const restaurant = {
 	description:
 		'Ramen redefined. A seasonal tasting menu around house-made ramen, local ingredients and sake in Amsterdam Oost. Izakaya à la carte on Saturday.',
 	url: 'https://www.fukuramenamsterdam.com/',
-	reserveUrl: 'https://www.fukuramenamsterdam.com/',
+	/**
+	 * Booking runs on Tebi (checked on fukuramenamsterdam.com, 1 October 2026; it was Zenchef before).
+	 * The snippet below is the one Fuku's own site loads. Tebi's manager script turns the token
+	 * into the widget iframe; `widgetUrl` is what that iframe showed on their site, for reference.
+	 * `url` is the plain link: without JavaScript, or if the widget fails, Reserve goes there.
+	 */
+	reservations: {
+		provider: 'Tebi',
+		url: 'https://www.fukuramenamsterdam.com/reservations',
+		origin: 'https://live.tebi.co',
+		script: 'https://live.tebi.co/ecom/widget-manager.js',
+		widgetToken: '431923_26ad8730388e1eed93775c4571c4335e45d8a533b2ec9d21f8c5f573af38f30d',
+		widgetUrl:
+			'https://live.tebi.co/ecom/widget/431923_d57b9f4c740c29a76d64c253e773200cb35c386a348f508874876abf312560e2'
+	},
 	email: 'hello@fukuramenamsterdam.com',
 	phone: {
 		display: '+31 6 42 60 85 96',

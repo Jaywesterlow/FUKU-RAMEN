@@ -57,6 +57,7 @@ docs/                         motion concept, competitor research, the static de
 | `<svelte:element>`                                       | `RevealHeading`              | One heading component for `h1` and `h2`                                                |
 | `load` + `prerender`                                     | `+layout.ts`, `+page.ts`     | Content reaches components as props; swapping the file for a CMS touches two functions |
 | `<enhanced:img>`                                         | every photo                  | AVIF and WebP, `srcset`, intrinsic size                                                |
+| `{#if}` in `<svelte:head>`, `<svelte:window>`            | `+layout.svelte`             | Tebi's booking script renders on the first Reserve click; its messages arrive as props |
 
 ## Motion
 
@@ -68,6 +69,7 @@ GSAP alone sets the start state of a reveal. A CSS transform on the same element
 
 - `gsap`, `lenis`: the demo motion stack.
 - `@sveltejs/enhanced-img`: image pipeline.
+- Not an npm dependency, but a third-party script: Tebi's `widget-manager.js` (Fuku's booking widget), loaded from `live.tebi.co` only after the first Reserve click. Ids in `src/lib/data/restaurant.ts`, state in `src/lib/state/reservations.svelte.ts`.
 
 ## Fonts
 
@@ -76,6 +78,6 @@ Self-hosted from `static/fonts/`, no Google Fonts request. Bodoni Moda and Hanke
 ## Still open
 
 - The three video loops are Pexels stock (sources in `docs/bewegingsconcept.md`). Replace with Fuku's own footage.
-- "Reserve a table" links to the live site. In production the Zenchef widget should load in-page, on click.
+- Booking runs on Tebi (Fuku switched from Zenchef). The widget loads on the first Reserve click; the real widget on this domain has only been tested against a mock. The €10 deposit and the waiting-list line are from the Zenchef days: confirm with Fuku.
 - Phone number: the research found `+31611047801` in Fuku's JSON-LD, the visible contact page says `+31 6 42 60 85 96`. The demo uses the visible one. Ask Fuku.
 - Dutch version (`/nl`) with `hreflang`.
