@@ -10,12 +10,15 @@ if (browser) {
 
 export { gsap, ScrollTrigger };
 
+let current: Lenis | null = null;
+
 /**
  * Lenis + ScrollTrigger on one clock (library base, once per site).
  * Returns the cleanup, so it can be the body of an $effect.
  */
 export function startSmoothScroll(): () => void {
 	const lenis = new Lenis({ autoRaf: false, anchors: true });
+	current = lenis;
 	const raf = (time: number) => lenis.raf(time * 1000);
 
 	lenis.on('scroll', ScrollTrigger.update);
@@ -25,7 +28,14 @@ export function startSmoothScroll(): () => void {
 	return () => {
 		gsap.ticker.remove(raf);
 		lenis.destroy();
+		if (current === lenis) current = null;
 	};
+}
+
+/** Holds the page still while a modal is open (lenis.css clips the root while stopped). */
+export function holdScroll(hold: boolean): void {
+	if (hold) current?.stop();
+	else current?.start();
 }
 
 /** Trigger positions are only right once fonts and images have their final size. */

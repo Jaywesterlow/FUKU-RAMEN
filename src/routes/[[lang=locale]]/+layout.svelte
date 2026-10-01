@@ -7,8 +7,9 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import { locales, site } from '$lib/data/restaurant';
 	import { restaurantSchema } from '$lib/data/schema';
-	import { refreshWhenSettled, startSmoothScroll } from '$lib/motion/scroll';
+	import { holdScroll, refreshWhenSettled, startSmoothScroll } from '$lib/motion/scroll';
 	import { opening } from '$lib/state/opening.svelte';
+	import { reservations } from '$lib/state/reservations.svelte';
 
 	let { data, children } = $props();
 
@@ -42,6 +43,9 @@
 	});
 
 	$effect(() => refreshWhenSettled());
+
+	// the page behind the demo dialog stays where it is
+	$effect(() => holdScroll(reservations.isOpen));
 </script>
 
 <svelte:head>
