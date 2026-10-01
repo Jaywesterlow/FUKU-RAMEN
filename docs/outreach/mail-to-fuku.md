@@ -1,6 +1,6 @@
 # Mail to Fuku Ramen
 
-Current draft, 1 October 2026. Saved as a draft in jay@jwcreative.nl (Drafts, uid 36); Jaymar checks and sends it himself. Not sent yet.
+Sent by Jaymar on 1 October 2026 (draft uid 36). The call follows this week.
 
 ```
 To:      hello@fukuramenamsterdam.com

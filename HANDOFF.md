@@ -14,14 +14,14 @@ Everything you need is in this repo. Nothing important lives only on Jaymar's la
 
 ## Where it stands
 
-| Thing     | State                                                                                                                                            |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Live site | https://fuku-ramen.vercel.app (public)                                                                                                           |
-| Repo      | https://github.com/Jaywesterlow/FUKU-RAMEN (private), branch `main`                                                                              |
-| Vercel    | Project `fuku-ramen`, team `jaywesterlows-projects`. Every push to `main` deploys to production.                                                 |
-| Stack     | SvelteKit, Svelte 5 runes, TypeScript strict, plain CSS, GSAP + ScrollTrigger + Lenis, `@sveltejs/enhanced-img`, `@sveltejs/adapter-vercel`      |
-| Checks    | `npm run check`, `npm run lint` and `npm run build` all pass on `main`                                                                           |
-| Outreach  | A draft mail to the owner sits in the Drafts of jay@jwcreative.nl. Jaymar sends it himself and follows up by phone. Ask him whether it went out. |
+| Thing     | State                                                                                                                                       |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Live site | https://fuku-ramen.vercel.app (public)                                                                                                      |
+| Repo      | https://github.com/Jaywesterlow/FUKU-RAMEN (private), branch `main`                                                                         |
+| Vercel    | Project `fuku-ramen`, team `jaywesterlows-projects`. Every push to `main` deploys to production.                                            |
+| Stack     | SvelteKit, Svelte 5 runes, TypeScript strict, plain CSS, GSAP + ScrollTrigger + Lenis, `@sveltejs/enhanced-img`, `@sveltejs/adapter-vercel` |
+| Checks    | `npm run check`, `npm run lint` and `npm run build` all pass on `main`                                                                      |
+| Outreach  | Mail sent 1 October 2026 (see `docs/outreach/mail-to-fuku.md`). Jaymar calls this week. Ask him how the call went.                          |
 
 The other Vercel URLs (`…-jaywesterlows-projects.vercel.app`) sit behind a Vercel login. Only share `fuku-ramen.vercel.app`.
 
