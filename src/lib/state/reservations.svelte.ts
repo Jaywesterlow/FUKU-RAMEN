@@ -1,6 +1,6 @@
-import { restaurant } from '$lib/data/restaurant';
+import { facts } from '$lib/data/restaurant';
 
-const { origin, url } = restaurant.reservations;
+const { origin, url } = facts.reservations;
 
 /** How long the widget may take to say hello before Reserve falls back to the plain link. */
 const PATIENCE = 8000;

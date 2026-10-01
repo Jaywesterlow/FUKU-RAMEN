@@ -1,10 +1,17 @@
 <script lang="ts">
 	import { reservations } from '$lib/state/reservations.svelte';
+	import { resolve } from '$app/paths';
 	import logo from '$lib/assets/logo.png?enhanced';
-	import type { Restaurant } from '$lib/data/restaurant';
+	import { site, type Locale, type Restaurant, type UI } from '$lib/data/restaurant';
 
-	type Props = { restaurant: Restaurant };
-	let { restaurant }: Props = $props();
+	type Props = { restaurant: Restaurant; text: UI['footer']; locale: Locale };
+	let { restaurant, text, locale }: Props = $props();
+
+	/** the other language, by its own name; a full page load, as in the nav */
+	const other = $derived<Locale>(locale === 'en' ? 'nl' : 'en');
+	const otherHref = $derived(
+		resolve('/[[lang=locale]]', { lang: other === 'en' ? undefined : other })
+	);
 </script>
 
 <footer>
@@ -24,13 +31,17 @@
 
 		<div class="links">
 			<a class="ul" href={restaurant.instagram} target="_blank" rel="noopener">Instagram</a>
-			<a class="ul" href={restaurant.reservations.url} onclick={reservations.open}>Reserve</a>
-			<a class="ul" href="#top">Back to top</a>
+			<a class="ul" href={restaurant.reservations.url} onclick={reservations.open}>{text.reserve}</a
+			>
+			<a class="ul" href="#top">{text.top}</a>
+			<a class="ul" href={otherHref} hreflang={other} lang={other} data-sveltekit-reload>
+				{site.languages[other].name}
+			</a>
 		</div>
 
 		<p class="credit">
 			<span>福 · {restaurant.name} · KVK {restaurant.kvk}</span>
-			<span>Concept demo · jwcreative.nl</span>
+			<span>{text.credit}</span>
 		</p>
 	</div>
 </footer>

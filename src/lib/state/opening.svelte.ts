@@ -1,5 +1,5 @@
 import { openingHeadline } from '$lib/data/opening';
-import { restaurant } from '$lib/data/restaurant';
+import { openingHours, type OpeningWords } from '$lib/data/restaurant';
 
 /**
  * The clock the site reads. `now` stays null on the server and until the first effect runs,
@@ -11,9 +11,10 @@ class Opening {
 	/** Day of the week, or null while the clock has not started. */
 	day = $derived(this.now ? this.now.getDay() : null);
 
-	headline = $derived(
-		this.now ? openingHeadline(this.now, restaurant.hours) : 'Wednesday to Saturday'
-	);
+	/** The hero line in the page's language. Reactive where it is read, since it reads `now`. */
+	headline(words: OpeningWords): string {
+		return this.now ? openingHeadline(this.now, openingHours, words) : words.fallback;
+	}
 
 	isToday(days: number[]): boolean {
 		return this.day !== null && days.includes(this.day);

@@ -2,11 +2,12 @@
 	import { reservations } from '$lib/state/reservations.svelte';
 	import { fade } from 'svelte/transition';
 	import { innerHeight, scrollY } from 'svelte/reactivity/window';
-	import type { Restaurant } from '$lib/data/restaurant';
+	import type { Locale, NavLink, Restaurant, UI } from '$lib/data/restaurant';
 	import Button from './Button.svelte';
+	import LangSwitch from './LangSwitch.svelte';
 
-	type Props = { restaurant: Restaurant; links: { href: string; label: string }[] };
-	let { restaurant, links }: Props = $props();
+	type Props = { restaurant: Restaurant; links: NavLink[]; text: UI['nav']; locale: Locale };
+	let { restaurant, links, text, locale }: Props = $props();
 
 	let menuOpen = $state(false);
 
@@ -14,7 +15,10 @@
 	const pastHero = $derived((scrollY.current ?? 0) > (innerHeight.current ?? Infinity) - 72);
 </script>
 
-<nav class={['nav', { solid: pastHero && !menuOpen, 'over-menu': menuOpen }]} aria-label="Main">
+<nav
+	class={['nav', { solid: pastHero && !menuOpen, 'over-menu': menuOpen }]}
+	aria-label={text.label}
+>
 	<a class="brand" href="#top" onclick={() => (menuOpen = false)}>
 		<span class="jp" aria-hidden="true">福</span>
 		<span>{restaurant.name}</span>
@@ -27,6 +31,7 @@
 	</div>
 
 	<div class="right">
+		<LangSwitch {locale} label={text.language} />
 		<div class="reserve">
 			<Button
 				href={restaurant.reservations.url}
@@ -35,7 +40,7 @@
 				size="sm"
 				arrow={false}
 			>
-				Reserve
+				{text.reserve}
 			</Button>
 		</div>
 		<button
@@ -44,7 +49,7 @@
 			aria-controls="menu"
 			onclick={() => (menuOpen = !menuOpen)}
 		>
-			{menuOpen ? 'Close' : 'Menu'}
+			{menuOpen ? text.close : text.menu}
 		</button>
 	</div>
 </nav>

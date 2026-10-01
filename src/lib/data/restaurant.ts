@@ -1,27 +1,43 @@
 import type { PhotoKey } from '$lib/assets/photos';
+import { en } from './restaurant.en';
+import { nl } from './restaurant.nl';
 
 /**
- * One content object. The page, the "open today" line and the JSON-LD all read from here,
- * so opening hours on screen and in structured data can never drift apart.
+ * The content of the site. Facts that read the same in every language live here once;
+ * the words live in `restaurant.en.ts` and `restaurant.nl.ts`. `content[locale]` joins them,
+ * so the page, the "open today" line and the JSON-LD can never drift apart between languages.
  */
 
-export type OpeningBlock = {
+export const locales = ['en', 'nl'] as const;
+export type Locale = (typeof locales)[number];
+
+/** `/` is English, `/nl` is Dutch. Anything else falls back to English. */
+export function localeFrom(param: string | undefined): Locale {
+	return param === 'nl' ? 'nl' : 'en';
+}
+
+export const site = {
+	origin: 'https://fuku-ramen.vercel.app',
+	paths: { en: '/', nl: '/nl' } satisfies Record<Locale, string>,
+	languages: {
+		en: { code: 'EN', name: 'English' },
+		nl: { code: 'NL', name: 'Nederlands' }
+	} satisfies Record<Locale, { code: string; name: string }>
+};
+
+export type Hours = {
 	/** 0 = Sunday … 6 = Saturday, as Date.getDay() returns them */
 	days: number[];
 	schemaDays: string[];
-	label: string;
 	opens: string;
 	closes: string;
-	note: string;
 };
 
-export type Restaurant = typeof restaurant;
+export type OpeningBlock = Hours & { label: string; note: string };
 
-export const restaurant = {
+/** Language-neutral facts: the same on every page and in the JSON-LD. */
+export const facts = {
 	name: 'Fuku Ramen',
-	tagline: 'Ramen redefined.',
-	description:
-		'Ramen redefined. A seasonal tasting menu around house-made ramen, local ingredients and sake in Amsterdam Oost. Izakaya à la carte on Saturday.',
 	url: 'https://www.fukuramenamsterdam.com/',
 	/**
 	 * Booking runs on Tebi (checked on fukuramenamsterdam.com, 1 October 2026; it was Zenchef before).
@@ -42,41 +58,141 @@ export const restaurant = {
 	phone: {
 		display: '+31 6 42 60 85 96',
 		href: 'tel:+31642608596',
-		schema: '+31642608596',
-		hours: 'Phone Wednesday to Saturday, 11:00 – 18:00'
+		schema: '+31642608596'
 	},
 	address: {
 		street: 'Ingogostraat 14A',
 		postalCode: '1092 HZ',
 		city: 'Amsterdam',
 		country: 'NL',
-		area: 'Amsterdam Oost',
 		maps: 'https://maps.google.com/?q=Ingogostraat+14A,+1092+HZ+Amsterdam'
 	},
 	instagram: 'https://www.instagram.com/fuku_ramen_amsterdam',
 	kvk: '86228811',
 	priceRange: '€€€',
 	cuisine: ['Ramen', 'Japanese'],
-	hours: [
-		{
-			days: [3, 4, 5],
-			schemaDays: ['Wednesday', 'Thursday', 'Friday'],
-			label: 'Wednesday to Friday',
-			opens: '18:00',
-			closes: '23:00',
-			note: 'the evening, reservations only'
-		},
-		{
-			days: [6],
-			schemaDays: ['Saturday'],
-			label: 'Saturday',
-			opens: '13:00',
-			closes: '19:30',
-			note: 'izakaya, walk-ins limited'
-		}
-	] satisfies OpeningBlock[],
-	closedLabel: 'Sunday to Tuesday'
+	price: '€89'
 };
+
+export type Facts = typeof facts;
+
+const hours: [Hours, Hours] = [
+	{
+		days: [3, 4, 5],
+		schemaDays: ['Wednesday', 'Thursday', 'Friday'],
+		opens: '18:00',
+		closes: '23:00'
+	},
+	{ days: [6], schemaDays: ['Saturday'], opens: '13:00', closes: '19:30' }
+];
+
+/** The clock reads these; they hold no words. */
+export const openingHours: Hours[] = hours;
+
+/** A sample structure: the real menu follows the season. */
+const courseFacts = [
+	{ id: 1, kanji: '一', photo: 'p06' },
+	{ id: 2, kanji: '二', photo: 'p08' },
+	{ id: 3, kanji: '三', photo: 'p10' },
+	{ id: 4, kanji: '四', photo: 'p11' },
+	{ id: 5, kanji: '五', photo: 'p04' },
+	{ id: 6, kanji: '六', photo: 'p12' }
+] as const satisfies readonly { id: number; kanji: string; photo: PhotoKey }[];
+
+const wayFacts = [
+	{ href: '#evening', hours: 0, photo: 'p08' },
+	{ href: '#saturday', hours: 1, photo: 'p10' }
+] as const satisfies readonly { href: string; hours: number; photo: PhotoKey }[];
+
+const stripFacts = [
+	{ photo: 'p03', wide: true },
+	{ photo: 'p09', wide: false },
+	{ photo: 'p07', wide: true },
+	{ photo: 'p12', wide: false },
+	{ photo: 'p04', wide: true },
+	{ photo: 'p02', wide: false },
+	{ photo: 'p11', wide: true }
+] as const satisfies readonly { photo: PhotoKey; wide: boolean }[];
+
+const navFacts = ['#story', '#evening', '#saturday', '#visit'] as const;
+
+/** One entry of words for each fact, in the same order: the tuple types keep the counts equal. */
+type WordsFor<T extends readonly unknown[], W> = { [K in keyof T]: W };
+
+/** The words for the "open today" line, see `opening.ts`. */
+export type OpeningWords = {
+	/** Sunday first, as Date.getDay() counts */
+	dayNames: [string, string, string, string, string, string, string];
+	today: string;
+	closedForToday: string;
+	closedToday: string;
+	from: string;
+	closed: string;
+	/** before the clock starts (prerendered HTML) */
+	fallback: string;
+};
+
+/** Everything in one language. Each locale file is checked against this type. */
+export type Copy = {
+	lang: Locale;
+	tagline: string;
+	description: string;
+	area: string;
+	phoneHours: string;
+	hours: WordsFor<typeof hours, { label: string; note: string }>;
+	closedLabel: string;
+	opening: OpeningWords;
+	navLinks: WordsFor<typeof navFacts, string>;
+	courses: WordsFor<typeof courseFacts, { title: string; line: string }>;
+	ways: WordsFor<typeof wayFacts, { title: string; line: string; detail: string; alt: string }>;
+	evening: { priceNote: string; note: string };
+	saturdayFacts: { term: string; detail: string }[];
+	goodToKnow: string[];
+	strip: WordsFor<typeof stripFacts, string>;
+	ui: {
+		nav: { label: string; reserve: string; menu: string; close: string; language: string };
+		hero: {
+			lines: string[];
+			lede: string;
+			reserve: string;
+			more: string;
+			cue: string;
+			cueLabel: string;
+		};
+		fortune: {
+			vertical: string;
+			eyebrow: string;
+			lines: string[];
+			lede: string;
+			alt: string;
+			caption: string;
+		};
+		ways: { eyebrow: string; lines: string[] };
+		evening: {
+			eyebrow: string;
+			lines: string[];
+			sample: string;
+			course: string;
+			reserve: string;
+		};
+		saturday: { eyebrow: string; lines: string[]; lede: string; video: string; reserve: string };
+		strip: { label: string };
+		visit: {
+			eyebrow: string;
+			lines: string[];
+			hours: string;
+			today: string;
+			closed: string;
+			find: string;
+			good: string;
+			reserve: string;
+			waitlist: string;
+		};
+		footer: { reserve: string; top: string; credit: string };
+	};
+};
+
+export type UI = Copy['ui'];
 
 export type Course = {
 	id: number;
@@ -85,40 +201,6 @@ export type Course = {
 	line: string;
 	photo: PhotoKey;
 };
-
-/** A sample structure: the real menu follows the season. */
-export const courses: Course[] = [
-	{ id: 1, kanji: '一', title: 'To begin', line: 'Small bites and a first pour.', photo: 'p06' },
-	{ id: 2, kanji: '二', title: 'Raw', line: 'Fish and vegetables at their moment.', photo: 'p08' },
-	{
-		id: 3,
-		kanji: '三',
-		title: 'From the charcoal',
-		line: 'Straight from the fire to the counter.',
-		photo: 'p10'
-	},
-	{
-		id: 4,
-		kanji: '四',
-		title: "The season's plate",
-		line: 'Whatever is at its best this month.',
-		photo: 'p11'
-	},
-	{
-		id: 5,
-		kanji: '五',
-		title: 'The bowl',
-		line: 'House-made ramen, as the main course.',
-		photo: 'p04'
-	},
-	{
-		id: 6,
-		kanji: '六',
-		title: 'To finish',
-		line: 'Something sweet, and a last sake.',
-		photo: 'p12'
-	}
-];
 
 export type Way = {
 	href: string;
@@ -131,64 +213,46 @@ export type Way = {
 	alt: string;
 };
 
-export const ways: Way[] = [
-	{
-		href: '#evening',
-		title: 'The evening',
-		days: 'Wednesday to Friday',
-		hours: '18:00 – 23:00',
-		line: 'Six courses, ramen as the main.',
-		detail: '€89 · reservations only',
-		photo: 'p08',
-		alt: 'A course on a stone plate'
-	},
-	{
-		href: '#saturday',
-		title: 'The izakaya',
-		days: 'Saturday',
-		hours: '13:00 – 19:30',
-		line: 'À la carte, a weekly ramen special.',
-		detail: 'Limited walk-ins',
-		photo: 'p10',
-		alt: 'Skewers over the charcoal grill'
-	}
-];
-
-export const evening = {
-	price: '€89',
-	priceNote: 'per person · reservations only',
-	note: 'A sample structure. The menu follows the season.'
-};
-
-export const saturdayFacts = [
-	{ term: 'Reservations', detail: 'Recommended. Limited walk-ins.' },
-	{ term: 'Company', detail: 'Children and dogs welcome.' },
-	{ term: 'Veg & vegan', detail: 'Always available on Saturday.' }
-];
-
-export const goodToKnow = [
-	'Reservations open on the 1st of each month at 12:00, two months ahead.',
-	'A €10 deposit per person holds your table. Free changes up to 24 hours before.',
-	'Online for up to 5 guests. Larger groups by email.',
-	'The evening is for guests of 13 and up. Please skip the perfume.',
-	'Pescatarian and no-pork are possible. Vegetarian and vegan on Saturday.'
-];
-
 export type StripPhoto = { photo: PhotoKey; alt: string; wide: boolean };
 
-export const strip: StripPhoto[] = [
-	{ photo: 'p03', alt: 'The counter and bar, lit low', wide: true },
-	{ photo: 'p09', alt: 'A bottle of sake', wide: false },
-	{ photo: 'p07', alt: 'A table by the wall with a single flower', wide: true },
-	{ photo: 'p12', alt: 'A cocktail with an orange peel', wide: false },
-	{ photo: 'p04', alt: 'Noodles lifted from a bowl', wide: true },
-	{ photo: 'p02', alt: 'Shoyu ramen with egg and chashu', wide: false },
-	{ photo: 'p11', alt: 'Grilled fish on a green sauce', wide: true }
-];
+export type NavLink = { href: string; label: string };
 
-export const navLinks = [
-	{ href: '#story', label: 'Fortune' },
-	{ href: '#evening', label: 'The evening' },
-	{ href: '#saturday', label: 'Saturday' },
-	{ href: '#visit', label: 'Visit' }
-];
+function compose(copy: Copy) {
+	const blocks: OpeningBlock[] = openingHours.map((block, i) => ({ ...block, ...copy.hours[i] }));
+	const span = (block: Hours) => `${block.opens} – ${block.closes}`;
+
+	const restaurant = {
+		...facts,
+		tagline: copy.tagline,
+		description: copy.description,
+		phone: { ...facts.phone, hours: copy.phoneHours },
+		address: { ...facts.address, area: copy.area },
+		hours: blocks,
+		closedLabel: copy.closedLabel
+	};
+
+	return {
+		locale: copy.lang,
+		restaurant,
+		opening: copy.opening,
+		ui: copy.ui,
+		navLinks: navFacts.map((href, i): NavLink => ({ href, label: copy.navLinks[i] })),
+		courses: courseFacts.map((course, i): Course => ({ ...course, ...copy.courses[i] })),
+		ways: wayFacts.map((way, i): Way => ({
+			href: way.href,
+			photo: way.photo,
+			days: blocks[way.hours].label,
+			hours: span(blocks[way.hours]),
+			...copy.ways[i]
+		})),
+		evening: { price: facts.price, ...copy.evening },
+		saturdayFacts: copy.saturdayFacts,
+		goodToKnow: copy.goodToKnow,
+		strip: stripFacts.map((item, i): StripPhoto => ({ ...item, alt: copy.strip[i] }))
+	};
+}
+
+export type Content = ReturnType<typeof compose>;
+export type Restaurant = Content['restaurant'];
+
+export const content: Record<Locale, Content> = { en: compose(en), nl: compose(nl) };

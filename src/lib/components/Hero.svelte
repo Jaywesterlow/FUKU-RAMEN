@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { reservations } from '$lib/state/reservations.svelte';
 	import { scrollY } from 'svelte/reactivity/window';
-	import type { Restaurant } from '$lib/data/restaurant';
+	import type { OpeningWords, Restaurant, UI } from '$lib/data/restaurant';
 	import { opening } from '$lib/state/opening.svelte';
 	import Arrow from './Arrow.svelte';
 	import Button from './Button.svelte';
@@ -9,8 +9,8 @@
 	import RevealHeading from './RevealHeading.svelte';
 	import SeamlessVideo from './SeamlessVideo.svelte';
 
-	type Props = { restaurant: Restaurant };
-	let { restaurant }: Props = $props();
+	type Props = { restaurant: Restaurant; text: UI['hero']; words: OpeningWords };
+	let { restaurant, text, words }: Props = $props();
 
 	const scrolled = $derived((scrollY.current ?? 0) > 40);
 </script>
@@ -22,13 +22,13 @@
 
 	<div class="wrap inner">
 		<div class="rise d1"><Eyebrow kanji="福">{restaurant.address.area}</Eyebrow></div>
-		<RevealHeading level="h1" on="load" lines={['Ramen', 'redefined.']} />
-		<p class="lede rise d2">Six seasonal courses that end in a bowl.</p>
+		<RevealHeading level="h1" on="load" lines={text.lines} />
+		<p class="lede rise d2">{text.lede}</p>
 		<div class="cta rise d3">
 			<Button href={restaurant.reservations.url} onclick={reservations.open} variant="light">
-				Reserve a table
+				{text.reserve}
 			</Button>
-			<a class="more" href="#evening">The evening <Arrow /></a>
+			<a class="more" href="#evening">{text.more} <Arrow /></a>
 		</div>
 	</div>
 
@@ -40,11 +40,11 @@
 					{restaurant.address.street}
 				</a>
 			</li>
-			<li class="open">{opening.headline}</li>
+			<li class="open">{opening.headline(words)}</li>
 			<li><a class="ul numeric" href={restaurant.phone.href}>{restaurant.phone.display}</a></li>
 		</ul>
-		<a class={['cue', { gone: scrolled }]} href="#story" aria-label="Scroll down">
-			<span>Scroll</span>
+		<a class={['cue', { gone: scrolled }]} href="#story" aria-label={text.cueLabel}>
+			<span>{text.cue}</span>
 			<svg viewBox="0 0 14 32" fill="none" stroke="currentColor" stroke-width="1.2">
 				<path d="M7 0v28M1 22l6 6 6-6" />
 			</svg>

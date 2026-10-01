@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { reservations } from '$lib/state/reservations.svelte';
-	import type { Restaurant } from '$lib/data/restaurant';
+	import type { Restaurant, UI } from '$lib/data/restaurant';
 	import { fadeUp } from '$lib/motion/attachments';
 	import { opening } from '$lib/state/opening.svelte';
 	import Button from './Button.svelte';
@@ -8,8 +8,8 @@
 	import LoopVideo from './LoopVideo.svelte';
 	import RevealHeading from './RevealHeading.svelte';
 
-	type Props = { restaurant: Restaurant; goodToKnow: string[] };
-	let { restaurant, goodToKnow }: Props = $props();
+	type Props = { restaurant: Restaurant; goodToKnow: string[]; text: UI['visit'] };
+	let { restaurant, goodToKnow, text }: Props = $props();
 </script>
 
 <section class="visit" id="visit">
@@ -18,30 +18,30 @@
 			<LoopVideo src="/video/noodles-boil.mp4" poster="/video/visit-poster.jpg" />
 		</div>
 		<div class="wrap">
-			<Eyebrow kanji="訪">Visit &amp; reserve</Eyebrow>
-			<RevealHeading lines={['Come and eat.']} />
+			<Eyebrow kanji="訪">{text.eyebrow}</Eyebrow>
+			<RevealHeading lines={text.lines} />
 		</div>
 	</div>
 
 	<div class="wrap cols">
 		<div class="col" {@attach fadeUp()}>
-			<h3>Hours</h3>
+			<h3>{text.hours}</h3>
 			<div class="hours">
 				{#each restaurant.hours as block (block.label)}
 					<p>
 						<b>
 							{block.label}
-							{#if opening.isToday(block.days)}<span class="today">Today</span>{/if}
+							{#if opening.isToday(block.days)}<span class="today">{text.today}</span>{/if}
 						</b>
 						<span class="numeric">{block.opens} – {block.closes}</span> · {block.note}
 					</p>
 				{/each}
-				<p><b>{restaurant.closedLabel}</b>Closed</p>
+				<p><b>{restaurant.closedLabel}</b>{text.closed}</p>
 			</div>
 		</div>
 
 		<div class="col" {@attach fadeUp()}>
-			<h3>Find us</h3>
+			<h3>{text.find}</h3>
 			<p>
 				<a class="ul" href={restaurant.address.maps} target="_blank" rel="noopener">
 					{restaurant.address.street}<br />
@@ -57,7 +57,7 @@
 		</div>
 
 		<div class="col" {@attach fadeUp()}>
-			<h3>Good to know</h3>
+			<h3>{text.good}</h3>
 			<ul>
 				{#each goodToKnow as item (item)}
 					<li>{item}</li>
@@ -68,11 +68,9 @@
 
 	<div class="wrap reserve">
 		<Button href={restaurant.reservations.url} onclick={reservations.open} size="lg" magnetic
-			>Reserve a table</Button
+			>{text.reserve}</Button
 		>
-		<p class="small">
-			Fully booked? The waiting list in the booking system emails you when a table frees up.
-		</p>
+		<p class="small">{text.waitlist}</p>
 	</div>
 </section>
 
