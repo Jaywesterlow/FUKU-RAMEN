@@ -16,7 +16,7 @@
 		<div class="text">
 			<Eyebrow kanji="福">{text.eyebrow}</Eyebrow>
 			<RevealHeading lines={text.lines} />
-			<p class="lede" {@attach fadeUp()}>{text.lede}</p>
+			<p class="lede" data-reveal="fade" {@attach fadeUp()}>{text.lede}</p>
 		</div>
 	</div>
 

@@ -26,7 +26,7 @@
 		<header>
 			<Eyebrow kanji="夜">{text.eyebrow}</Eyebrow>
 			<RevealHeading lines={text.lines} />
-			<p class="note" {@attach fadeUp()}>{evening.note}</p>
+			<p class="note" data-reveal="fade" {@attach fadeUp()}>{evening.note}</p>
 		</header>
 
 		<div class="stack">

@@ -41,7 +41,7 @@
 	}
 	.scroller {
 		overflow: hidden;
-		mask: linear-gradient(90deg, transparent, #fff 8%, #fff 92%, transparent);
+		mask: linear-gradient(90deg, transparent, #fff 12%, #fff 88%, transparent);
 	}
 	.track {
 		display: flex;
