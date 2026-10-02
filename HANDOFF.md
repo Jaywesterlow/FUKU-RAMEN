@@ -41,6 +41,8 @@ The full analysis of their site and of eight competitors is in `docs/concurrenti
 
 These came from his feedback. Do not undo them without asking.
 
+- **Never copy visible design between his sites.** Nothing from this repo's nav, buttons, language switch, dialog, footer, cards, hovers or reveals goes into another project as a file, and nothing from another project comes in here. Only the invisible base may be shared (scaffold, GSAP + Lenis wiring, routing, dialog logic, data typing), and any reuse is said in chat first. The MOOON demo was rejected on 2 October 2026 for breaking this; the rule is in his vault as `No Cross-Site Copying`.
+
 - **Calm and minimal.** Little text. Text may appear through interaction, but it must be obvious and never "click here".
 - **Hero is exactly one screen high**, with a video loop. Address, "open today until" and the phone number sit above the fold.
 - **The evening section is the signature.** The photo is sticky in the middle of the screen while the six courses scroll past; only the active course shows its line. He likes this section most.
